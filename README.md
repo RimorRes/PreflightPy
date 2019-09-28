@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-[Optional] Python3.x for running the .py files.
+[Optional] Python3.x for running the `.py` files.
 
 ### Installing
 
@@ -26,24 +26,24 @@ Follow the steps below to get the development environment running.
 
 ### Launch the app
 
-1. Running the .exe file
+1. Running the `.exe` file
 
-    **[Recommended]** Navigate from the PreFlight folder:
+    **[Recommended]** Navigate through the terminal:
     ```bash
     cd dist/PreFlight
     ./PreFlight.exe
     ```
-    Or create a shortcut from the file explorer GUI and ```double click it```.
+    Or find the file through the file explorer.
 
-2. Running the .py file
+2. Running the `.py` file
 
     **You need to have Python3.x installed and have it's paths in the PATH variable**
-    
+
     Navigate from the PreFlight folder:
     ```bash
     python PreFlight.py
     ```
-    Or create a shortcut from the file explorer GUI and ```double click it```.
+    Or find the file through the file explorer.
 
 ## Built With
 
@@ -52,14 +52,8 @@ Follow the steps below to get the development environment running.
 
 ## Versioning
 
-The versioning is as follows:
-* For any **version number MAJOR.MINOR.PATCH**:
-
-   MAJOR is incremented when a major change or complete revamp is preformes.  
-   MINOR is incremented when a new functionality is added (basically).  
-   PATCH is incremented for bug fixes, corrections, cleanup... and the sorts.  
-   
-For the versions available, see the [tags on this repository](https://git.nowtryz.net/IOrbital/preflight/tags).
+The versioning is formatted to Semantic Versioning 2.0.0 standards. [SemVer](https://semver.org/).
+For available versions, see the [releases of this project](https://github.com/Oxyde2/Preflight/releases).
 
 ## Authors
 
@@ -72,4 +66,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Maybe someday
-
