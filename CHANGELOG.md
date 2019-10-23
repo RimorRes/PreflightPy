@@ -33,7 +33,7 @@ and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 - `ConsoleClass.py`
 
 ## [0.3.1] - 2019-09-28
-## Development is no longer discontinued! :tada:
+**Development is no longer discontinued! :tada:**
 ### Changed
 - README.md
 - Moved repo GitLab→ GitHub
