@@ -1,0 +1,6 @@
+# Ignore output files
+.csv
+.log
+
+# Ignore python cache
+__pycache__
