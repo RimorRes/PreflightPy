@@ -1,4 +1,4 @@
-#!usr/bin/env python
+#!usr/bin/env python3
 
 import math, csv
 import env, params
@@ -249,7 +249,7 @@ def Plot(sd):
     plt.grid(True)
 
     plt.show()
-    
+
 
 if __name__ == '__main__':
     p = params.Parameters("case.json")
@@ -257,4 +257,3 @@ if __name__ == '__main__':
     s.launch()
     sd = s.plotData
     Plot(sd)
-
