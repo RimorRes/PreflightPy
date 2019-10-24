@@ -5,10 +5,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 
 ## [Unreleased]
-### Removal
-- UI
-
-## [0.5.0] - 2019-10-23
 ### Added
 - `env.py` for the `Environment` class
 - `case.json` for input
