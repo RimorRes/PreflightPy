@@ -207,7 +207,7 @@ class System:
         self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","twr")
 
 
-def Plot(sd):
+def plot(sd):
     plt.figure(1)
     plt.plot(sd[0], sd[1])
     plt.xlabel("time (s)")
@@ -251,9 +251,8 @@ def Plot(sd):
     plt.show()
 
 
-if __name__ == '__main__':
-    p = params.Parameters("case.json")
-    s = System(p, 35)
-    s.launch()
-    sd = s.plotData
-    Plot(sd)
+p = params.Parameters("case.json")
+s = System(p, 35)
+s.launch()
+sd = s.plotData
+plot(sd)
