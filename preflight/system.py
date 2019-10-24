@@ -1,7 +1,9 @@
 #!usr/bin/env python3
 
-import math, csv
-import env, params
+import math
+import csv
+import env
+import params
 import matplotlib.pyplot as plt
 
 class System:
