@@ -1,8 +1,11 @@
+#!usr/bin/env python3
+
 import math, csv
 import env, params
-class System:
+import matplotlib.pyplot as plt
 
-    def __init__(self, params, burn_time : float):
+class System:
+    def __init__(self, params, burn_time:float):
         p = params
         # Environment
         e = p.package[4]
@@ -204,51 +207,52 @@ class System:
         self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","twr")
 
 
-p = params.Parameters("preflight/case.json")
+def plot(sd):
+    plt.figure(1)
+    plt.plot(sd[0], sd[1])
+    plt.xlabel("time (s)")
+    plt.ylabel("Altitude (m)")
+    plt.title("{} s burn time".format(s.burn_time))
+    plt.grid(True)
+
+    plt.figure(2)
+    plt.plot(sd[0], sd[2], sd[0], sd[3])
+    plt.xlabel("time (s)")
+    plt.ylabel("Speed (m/s)")
+    plt.title("{} s burn time \n Speed of sound: orange, Speed of projectile: blue".format(s.burn_time))
+    plt.grid(True)
+
+    plt.figure(3)
+    plt.plot(sd[0], sd[4])
+    plt.xlabel("time (s)")
+    plt.ylabel("Acceleration (m/s2)")
+    plt.title("{} s burn time".format(s.burn_time))
+    plt.grid(True)
+
+    plt.figure(4)
+    plt.subplot(2,1,1)
+    plt.plot(sd[0], sd[5])
+    plt.ylabel("Jerk (m/s3)")
+    plt.title("{} s burn time".format(s.burn_time))
+    plt.grid(True)
+    plt.subplot(2,1,2)
+    plt.plot(sd[0], sd[6], 'r-')
+    plt.xlabel("time (s)")
+    plt.ylabel("Snap (m/s4)")
+    plt.grid(True)
+
+    plt.figure(5)
+    plt.plot(sd[0], sd[7])
+    plt.xlabel("time (s)")
+    plt.ylabel("Drag (N)")
+    plt.title("{} s burn time".format(s.burn_time))
+    plt.grid(True)
+
+    plt.show()
+
+
+p = params.Parameters("case.json")
 s = System(p, 35)
 s.launch()
 sd = s.plotData
-
-import matplotlib.pyplot as plt
-
-plt.figure(1)
-plt.plot(sd[0], sd[1])
-plt.xlabel("time (s)")
-plt.ylabel("Altitude (m)")
-plt.title("{} s burn time".format(s.burn_time))
-plt.grid(True)
-
-plt.figure(2)
-plt.plot(sd[0], sd[2], sd[0], sd[3])
-plt.xlabel("time (s)")
-plt.ylabel("Speed (m/s)")
-plt.title("{} s burn time \n Speed of sound: orange, Speed of projectile: blue".format(s.burn_time))
-plt.grid(True)
-
-plt.figure(3)
-plt.plot(sd[0], sd[4])
-plt.xlabel("time (s)")
-plt.ylabel("Acceleration (m/s2)")
-plt.title("{} s burn time".format(s.burn_time))
-plt.grid(True)
-
-plt.figure(4)
-plt.subplot(2,1,1)
-plt.plot(sd[0], sd[5])
-plt.ylabel("Jerk (m/s3)")
-plt.title("{} s burn time".format(s.burn_time))
-plt.grid(True)
-plt.subplot(2,1,2)
-plt.plot(sd[0], sd[6], 'r-')
-plt.xlabel("time (s)")
-plt.ylabel("Snap (m/s4)")
-plt.grid(True)
-
-plt.figure(5)
-plt.plot(sd[0], sd[7])
-plt.xlabel("time (s)")
-plt.ylabel("Drag (N)")
-plt.title("{} s burn time".format(s.burn_time))
-plt.grid(True)
-
-plt.show()
+plot(sd)
