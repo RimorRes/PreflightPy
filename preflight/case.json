@@ -11,8 +11,8 @@
     "Dry Mass (kg)" : 10
   },
   "Aerodynamics" : {
-    "Drag Coefficient" : 0.7,
-    "Rocket Radius (m)" : 0.075
+    "Drag Coefficient" : 0.3,
+    "Frontal Area (m2)" : 0.0255364
   },
   "Environment" : {
     "Starting altitude (m)" : 113,

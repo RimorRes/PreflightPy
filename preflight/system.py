@@ -30,8 +30,7 @@ class System:
         # Mass
         self.frameM = p.package[2][0]
         # Aerodynamics
-        self.Cd, self.Rr = p.package[3]
-        self.Aproj = self.Rr**2 * math.pi
+        self.Cd, self.Aproj = p.package[3]
         # Output
         self.logout, self.csvout = p.package[5]
 

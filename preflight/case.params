@@ -7,7 +7,7 @@ Fuel reserve (%) : 5
 Dry mass (kg) : 15
 =================== ▲ Mass ▲ ==================
 Drag coefficient : 0.7
-Rocket radius (m) : 0.075
+Frontal area (m2) : 0.0255364
 =============== ▲ Aerodynamics ▲ ==============
 Starting altitude (m) : 113
 Simulation step (s) : 1
