@@ -4,18 +4,19 @@ Thrust (N) : 500
 Oxidizer/Fuel mixture ratio : 15
 Fuel reserve (%) : 5
 =================== ▲ Fuel ▲ ==================
-Dry mass (kg) : 15
+Dry mass (kg) : 10
 =================== ▲ Mass ▲ ==================
-Drag coefficient : 0.7
+Drag coefficient : 0.0555
 Frontal area (m2) : 0.0255364
 =============== ▲ Aerodynamics ▲ ==============
 Starting altitude (m) : 113
-Simulation step (s) : 1
+Simulation step (s) : 0.01
 Gravity (m/s2) : 9.80665
 Air molar mass (kg/mol) : 0.02896968
 Gas constant (J/(K.mol)) : 8.314462618
 Air heat capacity ratio : 1.4
 Standard Atmospheric pressure @SL (Pa) : 101325
 =============== ▲ Environment ▲ ===============
-Output file path : Flight.log
+Log file path : Flight.log
+CSV File Path : Flight.csv
 ================== ▲ Output ▲ =================

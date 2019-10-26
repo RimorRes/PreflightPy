@@ -2,17 +2,14 @@
 
 import math
 import csv
-import env
-import params
 import matplotlib.pyplot as plt
 
 class System:
-    def __init__(self, params, burn_time:float):
+    def __init__(self, params, env, burn_time:float):
         p = params
         # Environment
-        e = p.package[4]
-        self.altitude = e[0]
-        self.env = env.Environment( e[1], e[2], e[3], e[4], e[5], e[6] )
+        self.altitude = p.package[4][0]
+        self.env = env
         # Burn time
         self.num_steps = int(burn_time/self.env.t)
         self.burn_time = self.num_steps * self.env.t
@@ -21,7 +18,7 @@ class System:
         # Fuel Specs
         self.OFratio, self.Reserve = p.package[1]
         # Flow Rate
-        self.w   = self.Fthrust/9.81/self.isp
+        self.w   = (self.Fthrust/9.81)/self.isp
         self.dF  = self.w * (1/(self.OFratio+1))
         self.dOx = (self.w - self.dF)
         # Fuel & Oxidizer
@@ -63,7 +60,7 @@ class System:
         self.t = 0
 
         # Used by matplotlib
-        self.plotData =[
+        self.plot_data =[
                         [], # index:0 time
                         [], # index:1 altitude
                         [], # index:2 velocity
@@ -165,8 +162,8 @@ class System:
         self.a = (self.Fthrust-(self.m * 9.81 + self.Fdrag))/self.m
 
     def calc_additional_derivatives(self):
-        self.j = ( self.a - self.plotData[4][-1] )/self.env.t
-        self.s = ( self.j - self.plotData[5][-1] )/self.env.t
+        self.j = ( self.a - self.plot_data[4][-1] )/self.env.t
+        self.s = ( self.j - self.plot_data[5][-1] )/self.env.t
 
 # Forces
     def calc_drag(self):
@@ -197,63 +194,58 @@ class System:
             f.close()
 
     def add_data(self):
-        self.plotData[0].append(self.t)
-        self.plotData[1].append(self.altitude)
-        self.plotData[2].append(self.v)
-        self.plotData[3].append(self.env.c)
-        self.plotData[4].append(self.a)
-        self.plotData[5].append(self.j)
-        self.plotData[6].append(self.s)
-        self.plotData[7].append(self.Fdrag)
+        self.plot_data[0].append(self.t)
+        self.plot_data[1].append(self.altitude)
+        self.plot_data[2].append(self.v)
+        self.plot_data[3].append(self.env.c)
+        self.plot_data[4].append(self.a)
+        self.plot_data[5].append(self.j)
+        self.plot_data[6].append(self.s)
+        self.plot_data[7].append(self.Fdrag)
         self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","twr")
 
 
-def plot(sd):
+def plot(burn_time: float, plot_data: list):
+    pd = plot_data
+    t = burn_time
     plt.figure(1)
-    plt.plot(sd[0], sd[1])
+    plt.plot(pd[0], pd[1])
     plt.xlabel("time (s)")
     plt.ylabel("Altitude (m)")
-    plt.title("{} s burn time".format(s.burn_time))
+    plt.title("{} s burn time".format(t))
     plt.grid(True)
 
     plt.figure(2)
-    plt.plot(sd[0], sd[2], sd[0], sd[3])
+    plt.plot(pd[0], pd[2], pd[0], pd[3])
     plt.xlabel("time (s)")
     plt.ylabel("Speed (m/s)")
-    plt.title("{} s burn time \n Speed of sound: orange, Speed of projectile: blue".format(s.burn_time))
+    plt.title("{} s burn time \n Speed of sound: orange, Speed of projectile: blue".format(t))
     plt.grid(True)
 
     plt.figure(3)
-    plt.plot(sd[0], sd[4])
+    plt.plot(pd[0], pd[4])
     plt.xlabel("time (s)")
     plt.ylabel("Acceleration (m/s2)")
-    plt.title("{} s burn time".format(s.burn_time))
+    plt.title("{} s burn time".format(t))
     plt.grid(True)
 
     plt.figure(4)
     plt.subplot(2,1,1)
-    plt.plot(sd[0], sd[5])
+    plt.plot(pd[0], pd[5])
     plt.ylabel("Jerk (m/s3)")
-    plt.title("{} s burn time".format(s.burn_time))
+    plt.title("{} s burn time".format(t))
     plt.grid(True)
     plt.subplot(2,1,2)
-    plt.plot(sd[0], sd[6], 'r-')
+    plt.plot(pd[0], pd[6], 'r-')
     plt.xlabel("time (s)")
     plt.ylabel("Snap (m/s4)")
     plt.grid(True)
 
     plt.figure(5)
-    plt.plot(sd[0], sd[7])
+    plt.plot(pd[0], pd[7])
     plt.xlabel("time (s)")
     plt.ylabel("Drag (N)")
-    plt.title("{} s burn time".format(s.burn_time))
+    plt.title("{} s burn time".format(t))
     plt.grid(True)
 
     plt.show()
-
-
-p = params.Parameters("case.json")
-s = System(p, 35)
-s.launch()
-sd = s.plotData
-plot(sd)

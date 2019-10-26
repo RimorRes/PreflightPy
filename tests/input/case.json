@@ -11,7 +11,7 @@
     "Dry Mass (kg)" : 10
   },
   "Aerodynamics" : {
-    "Drag Coefficient" : 0.3,
+    "Drag Coefficient" : 0.0555,
     "Frontal Area (m2)" : 0.0255364
   },
   "Environment" : {

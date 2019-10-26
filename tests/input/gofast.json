@@ -1,0 +1,30 @@
+{
+  "Engine" : {
+    "Specific Impulse (s)" : 212.5,
+    "Thrust (N)" : 39419
+  },
+  "Fuel" : {
+    "Oxidizer/Fuel Mixture Ratio" : 1,
+    "Fuel Reserve (%)" : 0
+  },
+  "Mass" : {
+    "Dry Mass (kg)" : 131.36
+  },
+  "Aerodynamics" : {
+    "Drag Coefficient" : 0.0555,
+    "Frontal Area (m2)" : 0.21
+  },
+  "Environment" : {
+    "Starting altitude (m)" : 1190,
+    "Simulation step (s)" : 0.01,
+    "Gravity (m/s2)" : 9.80665,
+    "Air molar mass (kg/mol)" : 0.02896968,
+    "Gas constant (J/(K.mol))" : 8.314462618,
+    "Air heat capacity ratio" : 1.4,
+    "Standard Atmospheric pressure @SL (Pa)" : 101325
+  },
+  "Output" : {
+    "Log File Path" : "output/gofast.log",
+    "CSV File Path" : "output/gofast.csv"
+  }
+}
