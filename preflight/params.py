@@ -30,6 +30,7 @@ class Parameters:
             for subgroup in j.values():
                 self.package.append( [ self.cast(x) for x in subgroup.values() ] )
 
+        self.env_variables = self.package.pop(4)
         file.close()
 
     def cast(self, x):

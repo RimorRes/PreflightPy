@@ -8,7 +8,6 @@ class System:
     def __init__(self, params, env, burn_time:float):
         p = params
         # Environment
-        self.altitude = p.package[4][0]
         self.env = env
         # Burn time
         self.num_steps = int(burn_time/self.env.t)
@@ -29,11 +28,11 @@ class System:
         # Aerodynamics
         self.Cd, self.Aproj = p.package[3]
         # Output
-        self.logout, self.csvout = p.package[5]
+        self.logout, self.csvout = p.package[4]
 
         open(self.logout, "w").close()
 
-        self.field_names = ["t","Fthrust","Fdrag","m","v","Mach","a","altitude","twr","maxV","maxMach","maxAcc","minAcc","maxG","minG"]
+        self.field_names = ["t","Fthrust","Fdrag","m","v","Mach","a","altitude","asl","twr","maxV","maxMach","maxAcc","minAcc","maxG","minG"]
         with open(self.csvout, "w", newline="") as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow(self.field_names)
@@ -42,8 +41,10 @@ class System:
     def launch(self):
         """Runs a simulation within the given parameters."""
         # Variable setup
+        self.altitude = 0
+        self.asl = self.altitude + self.env.elev
         self.calc_mass()
-        self.env.get_status(self.altitude)
+        self.env.get_status(self.asl)
         self.calc_twr()
         self.Fdrag = 0
         self.v = 0
@@ -152,6 +153,7 @@ class System:
 # Position
     def set_altitude(self):
         self.altitude += self.v * self.env.t + (self.a * self.env.t**2)/2 # Altitude increment
+        self.asl = self.altitude + self.env.elev
 
 # Derivatives of position
     def calc_velocity(self):
@@ -174,7 +176,7 @@ class System:
 
 # Environment
     def update_env(self):
-        self.env.get_status(self.altitude)
+        self.env.get_status(self.asl)
 
 # Ouput
     def output(self, *args):
@@ -202,7 +204,7 @@ class System:
         self.plot_data[5].append(self.j)
         self.plot_data[6].append(self.s)
         self.plot_data[7].append(self.Fdrag)
-        self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","twr")
+        self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","asl","twr")
 
 
 def plot(burn_time: float, plot_data: list):

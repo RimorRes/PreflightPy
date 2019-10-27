@@ -6,10 +6,10 @@ Fuel reserve (%) : 5
 =================== ▲ Fuel ▲ ==================
 Dry mass (kg) : 10
 =================== ▲ Mass ▲ ==================
-Drag coefficient : 0.0555
+Drag coefficient : 0.0556
 Frontal area (m2) : 0.0255364
 =============== ▲ Aerodynamics ▲ ==============
-Starting altitude (m) : 113
+Elevation (m) : 113
 Simulation step (s) : 0.01
 Gravity (m/s2) : 9.80665
 Air molar mass (kg/mol) : 0.02896968

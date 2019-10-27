@@ -11,11 +11,11 @@
     "Dry Mass (kg)" : 10
   },
   "Aerodynamics" : {
-    "Drag Coefficient" : 0.0555,
+    "Drag Coefficient" : 0.0556,
     "Frontal Area (m2)" : 0.0255364
   },
   "Environment" : {
-    "Starting altitude (m)" : 113,
+    "Elevation (m)" : 113,
     "Simulation step (s)" : 0.01,
     "Gravity (m/s2)" : 9.80665,
     "Air molar mass (kg/mol)" : 0.02896968,

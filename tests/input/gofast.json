@@ -15,7 +15,7 @@
     "Frontal Area (m2)" : 0.21
   },
   "Environment" : {
-    "Starting altitude (m)" : 1190,
+    "Elevation (m)" : 1190,
     "Simulation step (s)" : 0.01,
     "Gravity (m/s2)" : 9.80665,
     "Air molar mass (kg/mol)" : 0.02896968,

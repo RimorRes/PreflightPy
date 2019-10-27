@@ -3,14 +3,9 @@
 import math
 class Environment:
 
-    def __init__(self, calc_step = 1, g = 9.80665, M_air = 0.02896968, R = 8.314462618, gamma = 1.4, Pstatic = 101325):
+    def __init__(self, vars):
         # Environmental Constants
-        self.t = calc_step
-        self.g = g
-        self.M_air = M_air
-        self.R = R
-        self.gamma = gamma
-        self.Pstatic = Pstatic
+        self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.Pstatic = vars
 
     def get_temp(self, h: float) -> float:
         if h <= 11000 :
