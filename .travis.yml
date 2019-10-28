@@ -1,18 +1,13 @@
 language: python
 python:
-  - "3.6"
+  - "3.6"      # current default Python on Travis CI
   - "3.7"
-  - "3.9"
+  - "3.8"
+# command to install dependencies
 install:
-  - pip install -e . --use-mirrors
-before_script:
-  - pip install -r REQUIREMENTS.txt --use-mirrors
-  - git clone https://github.com/z4r/python-coveralls-example.git
-  - cd python-coveralls-example
-  - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
-  - pytest -v --cov=tests
-  - cd -
+  - pip install -r REQUIREMENTS.txt
+# command to run tests
 script:
-  - pytest --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
+  - pytest -v --cov=tests
 after_success:
   - coveralls
