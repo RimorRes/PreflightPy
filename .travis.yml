@@ -10,3 +10,5 @@ script:
   - pytest -v --cov=tests
 after_success:
   - coveralls
+after_failure:
+  - coveralls
