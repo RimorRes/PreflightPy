@@ -3,4 +3,10 @@
 *.log
 
 # Ignore python cache
-__pycache__
+__pycache__/
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore venv
+preflight-env/
