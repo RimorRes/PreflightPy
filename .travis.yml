@@ -5,7 +5,7 @@ python:
   - "3.8"
 # command to install dependencies
 install:
-  - python3 -m venv venv && . venv/bin/activate && pip install -r REQUIREMENTS.txt
+  - pip install -r REQUIREMENTS.txt
 # command to run tests
 script:
-  - . venv/bin/activate && pytest -v --cov=calculator
+  - pytest -v --cov=calculator
