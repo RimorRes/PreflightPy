@@ -1,5 +1,5 @@
-coverage~=4.5.4
-matplotlib~=3.1.1
-pytest~=5.2.2
-pytest-cov~=2.8.1
-flake8~=3.7.8
+coverage
+matplotlib
+pytest
+pytest-cov
+flake8
