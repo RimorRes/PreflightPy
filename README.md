@@ -1,4 +1,5 @@
 # PreFlight
+
 [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
 
 Python programs for rocket flight emulation.
