@@ -20,8 +20,8 @@ class TestEnvUpdate:
         environment.get_status(3048)
         assert round(environment.Rho, 1) == 0.9
 
-    """def test_speed_of_sound(self):
+    def test_speed_of_sound(self):
         parameters = pre.Parameters("tests/input/case.json")
         environment = pre.Environment(parameters.env_variables)
         environment.get_status(3048)
-        assert int(environment.c) == 328"""
+        assert int(environment.c) == 328
