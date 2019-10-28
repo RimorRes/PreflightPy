@@ -6,13 +6,13 @@ class TestEnvUpdate:
         parameters = pre.Parameters("tests/input/case.json")
         environment = pre.Environment(parameters.env_variables)
         environment.get_status(3048)
-        assert round(environment.P, -3) == 69000
+        assert round(environment.P, -3) == 79000
 
     def test_temperature(self):
         parameters = pre.Parameters("tests/input/case.json")
         environment = pre.Environment(parameters.env_variables)
         environment.get_status(3048)
-        assert int(environment.T) == 268
+        assert int(environment.T) == 368
 
     def test_density(self):
         parameters = pre.Parameters("tests/input/case.json")
