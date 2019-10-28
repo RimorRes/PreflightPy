@@ -2,4 +2,5 @@ matplotlib
 pytest
 pytest-cov
 flake8
+coveralls
 pyyaml
