@@ -8,6 +8,6 @@ install:
   - pip install -r REQUIREMENTS.txt
 # command to run tests
 script:
-  - pytest -v --cov=tests
+  - pytest -v --cov=tests coveralls
 after_success:
   - coveralls
