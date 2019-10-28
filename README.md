@@ -1,6 +1,6 @@
 # PreFlight
 
-[![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master&service=github)
 
 Python programs for rocket flight emulation.
 - Altitude prediction
