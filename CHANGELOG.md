@@ -11,10 +11,16 @@ and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 - `.json` input file support
 - `.csv` output file support
 - `.gitignore` file
+- Unit tests
+- Travis CI and Coveralls
 
 ### Changed
 - `params.py` for `.json` input support
 - `system.py` for `.csv` output support
+- REQUIREMENTS.txt
+
+### Fixed
+- Environment model
 
 ## [0.4.0] - 2019-10-23
 ### Added
