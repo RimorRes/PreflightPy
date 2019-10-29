@@ -7,6 +7,6 @@ install:
   - pip install -r REQUIREMENTS.txt
 # command to run tests
 script:
-  - pytest -v --cov
+  - pytest -v --cov=preflight
 after_success:
   - coveralls
