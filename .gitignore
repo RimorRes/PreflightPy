@@ -10,3 +10,6 @@ __pycache__/
 
 # Ignore venv
 preflight-env/
+
+# Ignore coverage report
+*.coverage

@@ -16,7 +16,7 @@ class TestEnvUpdate:
         assert round(environment.P, 1) == 5.2
 
     def test_temperature(self):
-        parameters = pre.Parameters("tests/input/case.json")
+        parameters = pre.Parameters("tests/input/case.params")
         environment = pre.Environment(parameters.env_variables)
         environment.get_status(5000)
         assert round(environment.T, 2) == 255.68
@@ -43,7 +43,7 @@ class TestEnvUpdate:
 
 
     def test_speed_of_sound(self):
-        parameters = pre.Parameters("tests/input/case.json")
+        parameters = pre.Parameters("tests/input/case.params")
         environment = pre.Environment(parameters.env_variables)
         environment.get_status(1000)
         assert round(environment.c, 1) == 336.4
