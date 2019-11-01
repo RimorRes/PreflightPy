@@ -1,5 +1,24 @@
 #!usr/bin/env python3
 
+""" Preflight, a Python module for rocket flight simulation.
+Copyright (C) 2019  Oxyde2
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+You can contact the author at the following email address:
+iorbital.projects@gmail.com """
+
 import math
 class Environment:
 
@@ -10,7 +29,7 @@ class Environment:
         self.Pb = [101325, 22632.1, 5474.89, 868.019, 110.906, 66.9389, 3.95642]
         self.Tb = [288.15, 216.65, 216.65, 228.65, 270.65, 270.65, 214.65]
         self.Lm = [-0.0065, 0.0, 0.001, 0.0028, 0.0, -0.0028, -0.002]
-        
+
     def get_geopotential_altitude(self, r: float, z: float) -> float:
         return r*z / (r+z)
 
