@@ -25,7 +25,10 @@ To install the required python modules just run the following command in the com
 pip install -r requirements.txt
 ```
 
-### Installing
+### Installation
+
+You can get Preflight from pip via `pip install preflight`. To contribute
+to the package, check out our [contribution guidelines](CONTRIBUTING.md) and preform the following steps.
 
  1. Cloning
     Through the command line, get to the directory you wish to clone the repository into then run the following command.
@@ -38,29 +41,8 @@ pip install -r requirements.txt
 
 Once you have successfully obtained your local copy open the project folder in your desired IDE or text editor.
 
-Great! You're all set now!
-
-### Launch the program!
-
-1. Running the `.exe` file **Unvailable in versions inferior to 0.5.0**
-
-    - Navigate through the command-line:
-      ```bash
-      cd dist/PreFlight
-      ./PreFlight.exe
-      ```
-    - Or find the file through the file explorer.
-
-2. Running the `.py` file **Unavailable in version 0.5.0-alpha.1**
-
-    **You need to have Python3.x installed and have it's paths in the PATH environmental variable**
-
-    - Navigate from the PreFlight folder:
-      ```bash
-      cd dist/PreFlight
-      python PreFlight.py
-      ```
-    - Or find the file through the file explorer.
+PreFlight requires Python 3.6+ and is not compatible with
+Python 2.x.
 
 ## Built With
 
@@ -80,7 +62,7 @@ For available versions, see the [releases of this project](https://github.com/Ox
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
