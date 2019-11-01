@@ -23,16 +23,6 @@ to the package, check out our [contribution guidelines](CONTRIBUTING.md) and pre
 
 ### Contribuitng
 
-#### Prerequisites
-
-- Python3.x for running the `.py` files.
-
-To install the required python modules just run the following command in the command line.
-
-```
-pip install -r requirements.txt
-```
-
 #### Cloning
 
  1. Cloning
@@ -44,10 +34,20 @@ pip install -r requirements.txt
 2. Downloading the ZIP
     Download the compressed files and unzip them.
 
-Once you have successfully obtained your local copy open the project folder in your desired IDE or text editor.
+#### Prerequisites
 
-PreFlight requires Python 3.6+ and is not compatible with
-Python 2.x.
+- Python3.x for running the `.py` files.
+
+To install the required python modules just run the following command in the command line.
+
+```
+pip install -r requirements.txt
+```
+
+Once you have successfully obtained your local copy and the dependencies, open the project folder in your desired IDE or text editor.
+
+**PreFlight requires Python 3.6+ and is not compatible with
+Python 2.x.**
 
 ## Built With
 
