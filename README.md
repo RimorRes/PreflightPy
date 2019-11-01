@@ -38,7 +38,7 @@ to the package, check out our [contribution guidelines](CONTRIBUTING.md) and pre
 
 - Python3.x for running the `.py` files.
 
-To install the required python modules just run the following command in the command line.
+To install the required python modules just run the following command in the command line at the root of the repository.
 
 ```
 pip install -r requirements.txt
