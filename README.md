@@ -2,6 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
 [![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
+[![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight)](LICENSE)
+
 
 Python module for rocket flight simulation.
 - Altitude prediction
