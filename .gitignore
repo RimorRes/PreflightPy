@@ -13,3 +13,6 @@ preflight-env/
 
 # Ignore coverage report
 *.coverage
+
+# Ignore pycharm folder
+.idea/
