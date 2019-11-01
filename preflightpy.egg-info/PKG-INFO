@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: preflightpy
+Version: 0.5.0
+Summary: Python package for rocket flight simulation.
+Home-page: UNKNOWN
+Author: Oxyde2
+Author-email: iorbital.projects@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/Oxyde2/Preflight/issues
+Project-URL: Funding, https://www.gofundme.com/f/quark-suborbital
+Project-URL: Source, https://github.com/Oxyde2/Preflight
+Description: # PreFlight
+        
+        [![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight)](LICENSE)
+        
+        [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
+        [![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
+        
+        Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf) for short.
+        - Altitude prediction
+        - State prediction
+        - Flight trajectory optimization
+        - Flight plan optimization
+        
+        ## Getting Started
+        
+        These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+        
+        
+        ## Installation
+        
+        You can get Preflight from pip via `pip install preflight`. To contribute
+        to the package, check out our [contribution guidelines](CONTRIBUTING.md) and preform the following steps.
+        
+        ### Contribuitng
+        
+        #### Cloning
+        
+         1. Cloning
+            Through the command line, get to the directory you wish to clone the repository into then run the following command.
+            ```
+            git clone https://github.com/Oxyde2/Preflight.git
+            ```
+        
+        2. Downloading the ZIP
+            Download the compressed files and unzip them.
+        
+        #### Prerequisites
+        
+        To install the required python modules just run the following command in the command line at the root of the repository.
+        
+        ```
+        pip install -r requirements.txt
+        ```
+        
+        Once you have successfully obtained your local copy and the dependencies, open the project folder in your desired IDE or text editor.
+        
+        **PreFlight requires Python 3.6+ and is not compatible with
+        Python 2.x.**
+        
+        ## Built With
+        
+        * [Matplotlib](https://matplotlib.org/) - To draw the graphs
+        * [PyInstaller](https://pyinstaller.readthedocs.io/) - To build executable files.
+        * [PIP](https://pip.pypa.io/) - Python dependency manager.
+        
+        ## Versioning
+        
+        The versioning is formatted to Semantic Versioning 2.0.0 standards. [SemVer](https://semver.org/).
+        The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+        For available versions, see the [releases of this project](https://github.com/Oxyde2/Preflight/releases).
+        
+        ## Authors
+        
+        * **Maxime Djomby** - *Initial work* - [Oxyde2](https://github.com/Oxyde2/)
+        
+        ## License
+        
+        This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
+        
+        ## Acknowledgments
+        
+        * [Mix_42](https://github.com/42mix)
+        
+Keywords: model rocketry,rocketry,flight,simulator
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: test

@@ -1,11 +1,12 @@
 # PreFlight
 
-[![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
-[![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
+[![PyPI version](https://badge.fury.io/py/preflightpy.svg)](https://badge.fury.io/py/preflightpy)
 [![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight)](LICENSE)
 
+[![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
+[![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
 
-Python module for rocket flight simulation.
+Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf) for short.
 - Altitude prediction
 - State prediction
 - Flight trajectory optimization

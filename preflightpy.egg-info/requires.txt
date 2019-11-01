@@ -1,7 +1,12 @@
 matplotlib
+
+[dev]
+check-manifest
+flake8
+
+[test]
 coverage
 pytest
 pytest-cov
-flake8
 coveralls
 pyyaml
