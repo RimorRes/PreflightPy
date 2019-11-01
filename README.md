@@ -15,7 +15,15 @@ Python module for rocket flight simulation.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+
+## Installation
+
+You can get Preflight from pip via `pip install preflight`. To contribute
+to the package, check out our [contribution guidelines](CONTRIBUTING.md) and preform the following steps.
+
+### Contribuitng
+
+#### Prerequisites
 
 - Python3.x for running the `.py` files.
 
@@ -25,10 +33,7 @@ To install the required python modules just run the following command in the com
 pip install -r requirements.txt
 ```
 
-### Installation
-
-You can get Preflight from pip via `pip install preflight`. To contribute
-to the package, check out our [contribution guidelines](CONTRIBUTING.md) and preform the following steps.
+#### Cloning
 
  1. Cloning
     Through the command line, get to the directory you wish to clone the repository into then run the following command.
