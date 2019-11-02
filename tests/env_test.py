@@ -12,6 +12,28 @@ class TestEnvUpdate:
         assert round(environment.P, -1) == 5530
         environment.get_status(70000)
         assert round(environment.P, 1) == 5.2
+        environment.get_status(87000)
+        assert round(environment.P, 2) == 0.31
+        environment.get_status(95000)
+        assert round(environment.P, 3) == 0.076
+        environment.get_status(105000)
+        assert round(environment.P, 3) == 0.014
+        environment.get_status(115000)
+        assert round(environment.P, 4) == 0.0040
+        environment.get_status(140000)
+        assert round(environment.P, 5) == 0.00072
+        environment.get_status(170000)
+        assert round(environment.P, 5) == 0.00021
+        environment.get_status(250000)
+        assert round(environment.P, 6) == 0.000025
+        environment.get_status(400000)
+        assert round(environment.P, 8) == 1.45e-6
+        environment.get_status(625000)
+        assert round(environment.P, 10) == 6.26e-8
+        environment.get_status(800000)
+        assert round(environment.P, 10) == 1.70e-8
+        environment.get_status(1000000)
+        assert round(environment.P, 11) == 7.51e-9
 
     def test_temperature(self):
         environment = pre.Environment( [113, 0.01, 9.80665, 0.02896968, 8.314462618, 1.4, 101325] )

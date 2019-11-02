@@ -51,12 +51,28 @@ class Environment:
         elif 86000 < z <= 91000:
             return (186.67, 7)
         elif 91000 < z <= 110000:
-            return (263.1905 - 76.3232 * math.sqrt(1 - ((z - 91000) / -19942.9)**2), 8)
+            if 91000 < z <= 100000:
+                layer = 8
+            elif 100000 < z <= 110000:
+                layer = 9
+            return (263.1905 - 76.3232 * math.sqrt(1 - ((z - 91000) / -19942.9)**2), layer)
         elif 110000 < z <= 120000:
-            return (240 + 0.012 * (z - 110000), 9)
+            return (240 + 0.012 * (z - 110000), 10)
         elif 120000 < z <= 1000000:
+            if 120000 < z <= 150000:
+                layer = 11
+            elif 150000 < z <= 200000:
+                layer = 12
+            elif 200000 < z <= 300000:
+                layer = 13
+            elif 300000 < z <= 500000:
+                layer = 14
+            elif 500000 < z <= 750000:
+                layer = 15
+            elif 750000 < z <= 1000000:
+                layer = 16
             xi = (z - 120000) * (6356766 + 120000) / (6356766 + z)
-            return (1000 - 640 * math.exp(-0.00001875 * xi), 10)
+            return (1000 - 640 * math.exp(-0.00001875 * xi), layer)
 
     def get_pressure(self, z: float, h: float, T: float, b: int)-> float:
 
