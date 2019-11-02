@@ -70,4 +70,5 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Acknowledgments
 
-* [Mix_42](https://github.com/42mix)
+Early development of Preflight was supported by [Mix_42](https://github.com/42mix).
+The website [Rocket & Space Technology](http://www.braeunig.us/space/), written by Robert A. Braeunig, was used for pressure, density and temperature formulas for the atmospheric model.
