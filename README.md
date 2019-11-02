@@ -1,7 +1,7 @@
 # PreFlight
 
-[![PyPI version](https://badge.fury.io/py/preflightpy.svg)](https://badge.fury.io/py/preflightpy)
-[![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/preflightpy?color=blue)](https://pypi.org/project/preflightpy/)
+[![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight?color=yellow)](LICENSE)
 
 [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
 [![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
