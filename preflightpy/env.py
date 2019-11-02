@@ -61,8 +61,8 @@ class Environment:
     def get_pressure(self, z: float, h: float, T: float, b: int)-> float:
 
         def equ(a, b, c, d, e):
-            z = z/1000
-            return math.exp( a * z**4 + b * z**3 + c * z**2 + d * z + e)
+            zeta = z/1000
+            return math.exp( a * zeta**4 + b * zeta**3 + c * zeta**2 + d * zeta + e)
 
         if b <= 6:
             if self.Lm[b] != 0:
