@@ -1,9 +1,14 @@
 # PreFlight
 
+[![PyPI](https://img.shields.io/pypi/v/preflightpy?color=blue)](https://pypi.org/project/preflightpy/)
+[![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight?color=yellow)](LICENSE)
+
 [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
 [![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
 
-Python module for rocket flight simulation.
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20%F0%9F%98%9C%20%F0%9F%98%8D-FFDD67.svg?)](https://gitmoji.carloscuesta.me/)
+
+Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf) for short.
 - Altitude prediction
 - State prediction
 - Flight trajectory optimization
@@ -13,17 +18,15 @@ Python module for rocket flight simulation.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
 
-- Python3.x for running the `.py` files.
+## Installation
 
-To install the required python modules just run the following command in the command line.
+You can get Preflight from pip via `pip install preflight`. To contribute
+to the package, check out our [contribution guidelines](CONTRIBUTING.md) and preform the following steps.
 
-```
-pip install -r requirements.txt
-```
+### Contribuitng
 
-### Installing
+#### Cloning
 
  1. Cloning
     Through the command line, get to the directory you wish to clone the repository into then run the following command.
@@ -34,31 +37,18 @@ pip install -r requirements.txt
 2. Downloading the ZIP
     Download the compressed files and unzip them.
 
-Once you have successfully obtained your local copy open the project folder in your desired IDE or text editor.
+#### Prerequisites
 
-Great! You're all set now!
+To install the required python modules just run the following command in the command line at the root of the repository.
 
-### Launch the program!
+```
+pip install -r requirements.txt
+```
 
-1. Running the `.exe` file **Unvailable in versions inferior to 0.5.0**
+Once you have successfully obtained your local copy and the dependencies, open the project folder in your desired IDE or text editor.
 
-    - Navigate through the command-line:
-      ```bash
-      cd dist/PreFlight
-      ./PreFlight.exe
-      ```
-    - Or find the file through the file explorer.
-
-2. Running the `.py` file **Unavailable in version 0.5.0-alpha.1**
-
-    **You need to have Python3.x installed and have it's paths in the PATH environmental variable**
-
-    - Navigate from the PreFlight folder:
-      ```bash
-      cd dist/PreFlight
-      python PreFlight.py
-      ```
-    - Or find the file through the file explorer.
+**PreFlight requires Python 3.6+ and is not compatible with
+Python 2.x.**
 
 ## Built With
 
@@ -78,8 +68,9 @@ For available versions, see the [releases of this project](https://github.com/Ox
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* [Mix_42](https://github.com/42mix)
+Early development of Preflight was supported by [Mix_42](https://github.com/42mix).
+The website [Rocket & Space Technology](http://www.braeunig.us/space/), written by Robert A. Braeunig, was used for pressure, density and temperature formulas for the atmospheric model.

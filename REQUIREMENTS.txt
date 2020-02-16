@@ -1,4 +1,5 @@
 matplotlib
+coverage
 pytest
 pytest-cov
 flake8

@@ -1,11 +1,31 @@
 #!usr/bin/env python3
 
+""" Preflight, a Python module for rocket flight simulation.
+Copyright (C) 2019  Oxyde2
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+You can contact the author at the following email address:
+iorbital.projects@gmail.com """
+
 import math
 import csv
 import matplotlib.pyplot as plt
 
+
 class System:
-    def __init__(self, params, env, burn_time:float):
+    def __init__(self, params, env, burn_time: float):
         p = params
         # Environment
         self.env = env
@@ -17,11 +37,11 @@ class System:
         # Fuel Specs
         self.OFratio, self.Reserve = p.package[1]
         # Flow Rate
-        self.w   = (self.Fthrust/9.81)/self.isp
-        self.dF  = self.w * (1/(self.OFratio+1))
+        self.w = (self.Fthrust/9.81)/self.isp
+        self.dF = self.w * (1/(self.OFratio+1))
         self.dOx = (self.w - self.dF)
         # Fuel & Oxidizer
-        self.F  = (self.dF * self.burn_time)/(1 - self.Reserve/100)
+        self.F = (self.dF * self.burn_time)/(1 - self.Reserve/100)
         self.Ox = (self.dOx * self.burn_time)/(1 - self.Reserve/100)
         # Mass
         self.frameM = p.package[2][0]
@@ -32,12 +52,30 @@ class System:
 
         open(self.logout, "w").close()
 
-        self.field_names = ["t","Fthrust","Fdrag","m","v","Mach","a","altitude","asl","twr","maxV","maxMach","maxAcc","minAcc","maxG","minG"]
+        self.field_names = [
+            "t",
+            "Fthrust",
+            "Fdrag",
+            "m",
+            "v",
+            "Mach",
+            "a",
+            "altitude",
+            "asl",
+            "twr",
+            "maxV",
+            "maxMach",
+            "maxAcc",
+            "minAcc",
+            "maxG",
+            "minG"
+        ]
         with open(self.csvout, "w", newline="") as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow(self.field_names)
             f.close()
 
+# Flight
     def launch(self):
         """Runs a simulation within the given parameters."""
         # Variable setup
@@ -61,19 +99,19 @@ class System:
         self.t = 0
 
         # Used by matplotlib
-        self.plot_data =[
-                        [], # index:0 time
-                        [], # index:1 altitude
-                        [], # index:2 velocity
-                        [], # index:3 speed of sound
-                        [], # index:4 acceleration
-                        [], # index:5 jerk
-                        [], # index:6 snap
-                        [], # index:7 drag
-                        [], # index:8 temperature
-                        [], # index:9 pressure
-                        []  # index:10 density
-                        ]
+        self.plot_data = [
+            [],  # index:0 time
+            [],  # index:1 altitude
+            [],  # index:2 velocity
+            [],  # index:3 speed of sound
+            [],  # index:4 acceleration
+            [],  # index:5 jerk
+            [],  # index:6 snap
+            [],  # index:7 drag
+            [],  # index:8 temperature
+            [],  # index:9 pressure
+            []   # index:10 density
+            ]
 
         # Accelaration phase
         for i in range(self.num_steps):
@@ -135,11 +173,18 @@ class System:
                 self.minAcc = self.a
                 self.minG = self.minAcc/self.env.g
 
-        self.output("maxV","maxMach","maxAcc","minAcc","maxG","minG")
+        self.output(
+            "maxV",
+            "maxMach",
+            "maxAcc",
+            "minAcc",
+            "maxG",
+            "minG"
+        )
 
     def suicide_burn(self):
         """Run a suicide burn simulation, will affct ascent simulation."""
-        self.Vt = math.sqrt( (2 * self.m * self.env.g) / ( self.env.Rho * self.Aproj * self.Cd ) )
+        self.Vt = math.sqrt((2 * self.m * self.env.g) / (self.env.Rho * self.Aproj * self.Cd))  # noqa
 
 # Mass
     def calc_mass(self):
@@ -152,7 +197,7 @@ class System:
 
 # Position
     def set_altitude(self):
-        self.altitude += self.v * self.env.t + (self.a * self.env.t**2)/2 # Altitude increment
+        self.altitude += self.v * self.env.t + (self.a * self.env.t**2)/2  # noqa
         self.asl = self.altitude + self.env.elev
 
 # Derivatives of position
@@ -161,11 +206,11 @@ class System:
         self.Mach = self.v/self.env.c
 
     def calc_acc(self):
-        self.a = (self.Fthrust-(self.m * 9.81 + self.Fdrag))/self.m
+        self.a = (self.Fthrust - (self.m * 9.81 + self.Fdrag)) / self.m
 
     def calc_additional_derivatives(self):
-        self.j = ( self.a - self.plot_data[4][-1] )/self.env.t
-        self.s = ( self.j - self.plot_data[5][-1] )/self.env.t
+        self.j = (self.a - self.plot_data[4][-1]) / self.env.t
+        self.s = (self.j - self.plot_data[5][-1]) / self.env.t
 
 # Forces
     def calc_drag(self):
@@ -182,13 +227,15 @@ class System:
     def output(self, *args):
         with open(self.logout, 'a') as f:
             for arg in args:
-                f.write( '\t' + arg + ' : ' + str( round( eval(arg, self.__dict__), 5 ) ).ljust(10) + '\t' )
+                value = str(round(eval(arg, self.__dict__), 5)).ljust(10)
+                f.write('\t' + arg + ' : ' + value + '\t')
             f.write('\n')
             f.close()
 
         values = []
         for field in self.field_names:
-            values.append( str( round( eval(field, self.__dict__), 5 ) ) )
+            value = str(round(eval(field, self.__dict__), 5))
+            values.append(value)
 
         with open(self.csvout, "a", newline="") as f:
             csv_writer = csv.writer(f)
@@ -204,7 +251,18 @@ class System:
         self.plot_data[5].append(self.j)
         self.plot_data[6].append(self.s)
         self.plot_data[7].append(self.Fdrag)
-        self.output("t","Fthrust","Fdrag","m","v","Mach","a","altitude","asl","twr")
+        self.output(
+            "t",
+            "Fthrust",
+            "Fdrag",
+            "m",
+            "v",
+            "Mach",
+            "a",
+            "altitude",
+            "asl",
+            "twr"
+            )
 
 
 def plot(burn_time: float, plot_data: list):
@@ -220,8 +278,8 @@ def plot(burn_time: float, plot_data: list):
     plt.figure(2)
     plt.plot(pd[0], pd[2], pd[0], pd[3])
     plt.xlabel("time (s)")
-    plt.ylabel("Speed (m/s)")
-    plt.title("{} s burn time \n Speed of sound: orange, Speed of projectile: blue".format(t))
+    plt.ylabel("Velocity (m/s) (orange: sound, blue: rocket)")
+    plt.title("{} s burn time".format(t))
     plt.grid(True)
 
     plt.figure(3)
@@ -232,12 +290,12 @@ def plot(burn_time: float, plot_data: list):
     plt.grid(True)
 
     plt.figure(4)
-    plt.subplot(2,1,1)
+    plt.subplot(2, 1, 1)
     plt.plot(pd[0], pd[5])
     plt.ylabel("Jerk (m/s3)")
     plt.title("{} s burn time".format(t))
     plt.grid(True)
-    plt.subplot(2,1,2)
+    plt.subplot(2, 1, 2)
     plt.plot(pd[0], pd[6], 'r-')
     plt.xlabel("time (s)")
     plt.ylabel("Snap (m/s4)")

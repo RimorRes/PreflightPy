@@ -16,3 +16,8 @@ preflight-env/
 
 # Ignore pycharm folder
 .idea/
+
+#Ignore build
+build/
+dist/
+preflightpy.egg-info/
