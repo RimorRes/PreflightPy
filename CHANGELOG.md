@@ -8,6 +8,7 @@ and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 ### Added
 - Unit tests for heterosphere model
 - Unit tests for `params.py`
+- Linting using `flake8`
 
 ### Changed
 - `env.py` for 86km - 1000km support
