@@ -10,5 +10,6 @@ install:
 script:
   - pytest -v --cov=preflightpy
   - flake8 preflightpy
+  - flake8 tests
 after_success:
   - coveralls
