@@ -8,7 +8,7 @@
 
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20%F0%9F%98%9C%20%F0%9F%98%8D-FFDD67.svg?)](https://gitmoji.carloscuesta.me/)
 
-Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf) for short.
+Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf#page=19) for short.
 - Altitude prediction
 - State prediction
 - Flight trajectory optimization
