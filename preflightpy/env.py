@@ -26,13 +26,7 @@ class Environment:
 
     def __init__(self, vars):
         # Environmental Constants
-        self.elev,
-        self.t,
-        self.g,
-        self.M_air,
-        self.R,
-        self.gamma,
-        self.Pstatic = vars
+        self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.Pstatic = vars
         self.hb = [
             0,
             11000,
