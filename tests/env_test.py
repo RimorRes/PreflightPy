@@ -1,9 +1,18 @@
 from .context import preflightpy as pre
 
+
 class TestEnvUpdate:
 
     def test_pressure(self):
-        environment = pre.Environment( [113, 0.01, 9.80665, 0.02896968, 8.314462618, 1.4, 101325] )
+        environment = pre.Environment([
+            113,
+            0.01,
+            9.80665,
+            0.02896968,
+            8.314462618,
+            1.4,
+            101325
+            ])
         environment.get_status(5000)
         assert round(environment.P, -1) == 54040
         environment.get_status(11019)
@@ -36,7 +45,15 @@ class TestEnvUpdate:
         assert round(environment.P, 11) == 7.51e-9
 
     def test_temperature(self):
-        environment = pre.Environment( [113, 0.01, 9.80665, 0.02896968, 8.314462618, 1.4, 101325] )
+        environment = pre.Environment([
+            113,
+            0.01,
+            9.80665,
+            0.02896968,
+            8.314462618,
+            1.4,
+            101325
+            ])
         environment.get_status(5000)
         assert round(environment.T, 2) == 255.68
         environment.get_status(20063)
@@ -67,7 +84,15 @@ class TestEnvUpdate:
         assert round(environment.T, 2) == 1000.00
 
     def test_density(self):
-        environment = pre.Environment( [113, 0.01, 9.80665, 0.02896968, 8.314462618, 1.4, 101325] )
+        environment = pre.Environment([
+            113,
+            0.01,
+            9.80665,
+            0.02896968,
+            8.314462618,
+            1.4,
+            101325
+            ])
         environment.get_status(5000)
         assert round(environment.Rho, 4) == 0.7365
         environment.get_status(11019)
@@ -77,9 +102,16 @@ class TestEnvUpdate:
         environment.get_status(40000.0)
         assert round(environment.Rho, 4) == 0.0040
 
-
     def test_speed_of_sound(self):
-        environment = pre.Environment( [113, 0.01, 9.80665, 0.02896968, 8.314462618, 1.4, 101325] )
+        environment = pre.Environment([
+            113,
+            0.01,
+            9.80665,
+            0.02896968,
+            8.314462618,
+            1.4,
+            101325
+            ])
         environment.get_status(1000)
         assert round(environment.c, 1) == 336.4
         environment.get_status(10000)

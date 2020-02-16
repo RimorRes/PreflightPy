@@ -20,11 +20,13 @@ You can contact the author at the following email address:
 iorbital.projects@gmail.com """
 
 import json
+
+
 class Parameters:
 
-    def __init__(self, path = "preflight/case.params"):
+    def __init__(self, path="preflight/case.params"):
 
-        file = open(path,'r')
+        file = open(path, 'r')
         extension = path.split(".")[1]
 
         self.package = []
@@ -40,14 +42,13 @@ class Parameters:
 
                 else:
                     x = line.split(':')
-                    subgroup.append( self.cast( x[1].strip() ) )
-
+                    subgroup.append(self.cast(x[1].strip()))
 
         elif extension == "json":
             j = json.load(file)
 
             for subgroup in j.values():
-                self.package.append( [ self.cast(x) for x in subgroup.values() ] )
+                self.package.append([self.cast(x) for x in subgroup.values()])
 
         self.env_variables = self.package.pop(4)
         file.close()
@@ -55,9 +56,9 @@ class Parameters:
     def cast(self, x):
         try:
             return float(x)
-        except:
+        except Exception:
             return str(x)
 
 # TEMP: for testing purposes
-#p = Params()
-#print(p.package, len(str(p.package)), type(p.package[0][1]))
+# p = Params()
+# print(p.package, len(str(p.package)), type(p.package[0][1]))
