@@ -27,7 +27,7 @@ class Environment:
     def __init__(self, vars):
         # Environmental Constants
         self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.Pstatic = vars  # noqa
-        self.hb = [
+        self.hb = [  # Layer base altitudes
             0,
             11000,
             20000,
@@ -36,7 +36,7 @@ class Environment:
             51000,
             71000
             ]
-        self.Pb = [
+        self.Pb = [  # Layer base pressures
             101325,
             22632.1,
             5474.89,
@@ -45,7 +45,7 @@ class Environment:
             66.9389,
             3.95642
             ]
-        self.Tb = [
+        self.Tb = [  # Layer base temperatures
             288.15,
             216.65,
             216.65,
@@ -54,7 +54,7 @@ class Environment:
             270.65,
             214.65
             ]
-        self.Lm = [
+        self.Lm = [  # Layer lapse rates
             -0.0065,
             0.0,
             0.001,
@@ -66,6 +66,10 @@ class Environment:
 
     def get_geopotential_altitude(self, r: float, z: float) -> float:
         return r*z / (r+z)
+
+    def atmo_heterosphere_equ(self, z: float, a, b, c, d, e):
+        z_km = z/1000
+        return math.exp(a * z_km**4 + b * z_km**3 + c * z_km**2 + d * z_km + e)  # noqa
 
     def get_temp(self, z: float, h: float) -> float:
         if 0 <= h <= 11000:
@@ -80,10 +84,10 @@ class Environment:
             return (270.65 + (self.Lm[4]*(h-47000)), 4)
         elif 51000 < h <= 71000:
             return (270.65 + (self.Lm[5]*(h-51000)), 5)
-        elif 71000 < h <= 84856:
+        elif 71000 < h <= 84852:
             return (214.65 + (self.Lm[6]*(h-71000)), 6)
         elif 86000 < z <= 91000:
-            return (186.67, 7)
+            return (186.87, 7)
         elif 91000 < z <= 110000:
             if 91000 < z <= 100000:
                 layer = 8
@@ -113,17 +117,14 @@ class Environment:
 
     def get_pressure(self, z: float, h: float, T: float, b: int) -> float:
 
-        def equ(a, b, c, d, e):
-            zeta = z/1000
-            return math.exp(a * zeta**4 + b * zeta**3 + c * zeta**2 + d * zeta + e)  # noqa
-
         if b <= 6:
             if self.Lm[b] != 0:
                 return self.Pb[b] * (self.Tb[b]/T)**(self.g*self.M_air/(self.R*self.Lm[b]))  # noqa
             else:
                 return self.Pb[b] * math.exp(-self.g * self.M_air * (h-self.hb[b]) / (self.R*self.Tb[b]))  # noqa
         elif b == 7:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 0.000000,
                 2.159582e-6,
                 -4.836957e-4,
@@ -131,7 +132,8 @@ class Environment:
                 13.47530
                 )
         elif b == 8:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 0.000000,
                 3.304895e-5,
                 -0.009062730,
@@ -139,7 +141,8 @@ class Environment:
                 -11.03037
                 )
         elif b == 9:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 0.000000,
                 6.693926e-5,
                 -0.01945388,
@@ -147,7 +150,8 @@ class Environment:
                 -47.75030
                 )
         elif b == 10:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 0.000000,
                 -6.539316e-5,
                 0.02485568,
@@ -155,7 +159,8 @@ class Environment:
                 135.9355
                 )
         elif b == 11:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 2.283506e-7,
                 -1.343221e-4,
                 0.02999016,
@@ -163,7 +168,8 @@ class Environment:
                 113.5764
                 )
         elif b == 12:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 1.209434e-8,
                 -9.692458e-6,
                 0.003002041,
@@ -171,7 +177,8 @@ class Environment:
                 19.19151
                 )
         elif b == 13:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 8.113942e-10,
                 -9.822568e-7,
                 4.687616e-4,
@@ -179,7 +186,8 @@ class Environment:
                 3.067409
                 )
         elif b == 14:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 9.814674e-11,
                 -1.654439e-7,
                 1.148115e-4,
@@ -187,7 +195,8 @@ class Environment:
                 -2.011365
                 )
         elif b == 15:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 -7.835161e-11,
                 1.964589e-7,
                 -1.657213e-4,
@@ -195,7 +204,8 @@ class Environment:
                 -14.77132
                 )
         elif b == 16:
-            return equ(
+            return self.atmo_heterosphere_equ(
+                z,
                 2.813255e-11,
                 -1.120689e-7,
                 1.695568e-4,
@@ -203,19 +213,106 @@ class Environment:
                 14.56718
                 )
 
-    def get_density(self, P: float, T: float, b) -> float:
+    def get_density(self, z: float, P: float, T: float, b) -> float:
         if b <= 6:
-            V = 1
-            n = (P*V)/(self.R*T)
-            m = self.M_air * n
-            return (P * m)/(n * self.R * T)
+            return (P * self.M_air)/(self.R * T)
+        elif b == 7:
+            return self.atmo_heterosphere_equ(
+                z,
+                0.000000,
+                -3.322622E-06,
+                9.111460E-04,
+                -0.2609971,
+                5.944694
+                )
+        elif b == 8:
+            return self.atmo_heterosphere_equ(
+                z,
+                0.000000,
+                2.873405e-05,
+                -0.008492037,
+                0.6541179,
+                -23.62010
+                )
+        elif b == 9:
+            return self.atmo_heterosphere_equ(
+                z,
+                -1.240774e-05,
+                0.005162063,
+                -0.8048342,
+                55.55996,
+                -1443.338
+                )
+        elif b == 10:
+            return self.atmo_heterosphere_equ(
+                z,
+                0.00000,
+                -8.854164e-05,
+                0.03373254,
+                -4.390837,
+                176.5294
+                )
+        elif b == 11:
+            return self.atmo_heterosphere_equ(
+                z,
+                3.661771e-07,
+                -2.154344e-04,
+                0.04809214,
+                -4.884744,
+                172.3597
+                )
+        elif b == 12:
+            return self.atmo_heterosphere_equ(
+                z,
+                1.906032e-08,
+                -1.527799E-05,
+                0.004724294,
+                -0.6992340,
+                20.50921
+                )
+        elif b == 13:
+            return self.atmo_heterosphere_equ(
+                z,
+                1.199282e-09,
+                -1.451051e-06,
+                6.910474e-04,
+                -0.1736220,
+                -5.321644
+                )
+        elif b == 14:
+            return self.atmo_heterosphere_equ(
+                z,
+                1.140564e-10,
+                -2.130756e-07,
+                1.570762e-04,
+                -0.07029296,
+                -12.89844
+                )
+        elif b == 15:
+            return self.atmo_heterosphere_equ(
+                z,
+                8.105631e-12,
+                -2.358417e-09,
+                -2.635110e-06,
+                -0.01562608,
+                -20.02246
+                )
+        elif b == 16:
+            return self.atmo_heterosphere_equ(
+                z,
+                -3.701195e-12,
+                -8.608611e-09,
+                5.118829e-05,
+                -0.06600998,
+                -6.137674
+                )
 
-    def get_c(self, T: float):
+    def get_c(self, T: float) -> float:
         return math.sqrt((self.gamma * self.R * T) / self.M_air)
 
     def get_status(self, z: float):
         h = round(self.get_geopotential_altitude(6356766, z), 0)
         self.T, b = self.get_temp(z, h)
         self.P = self.get_pressure(z, h, self.T, b)
-        self.Rho = self.get_density(self.P, self.T, b)
+        self.Rho = self.get_density(z, self.P, self.T, b)
         self.c = self.get_c(self.T)
