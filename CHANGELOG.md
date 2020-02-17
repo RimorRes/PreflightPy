@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 
+## [0.6.1] - 2020-2-17
+### Added
+- Unit tests for density heterosphere model
+
+### Fixed
+- Density calculation in `env.py`
+
 ## [0.6.0] - 2019-11-2
 ### Added
 - Unit tests for heterosphere model
