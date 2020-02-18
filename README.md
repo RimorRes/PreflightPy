@@ -9,6 +9,7 @@
 [![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
 
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20%F0%9F%98%9C%20%F0%9F%98%8D-FFDD67.svg?)](https://gitmoji.carloscuesta.me/)
+[![Documentation Status](https://readthedocs.org/projects/preflight/badge/?version=latest)](https://preflight.readthedocs.io/en/latest/?badge=latest)
 
 Python module for **S**imulation and **O**ptimization of **R**ocket **T**rajectories, [**SORT**](https://www.nasa.gov/pdf/140648main_ESAS_17a.pdf#page=19) for short.
 - Altitude prediction
