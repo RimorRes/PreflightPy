@@ -1,4 +1,4 @@
-![preflightpy logo](https://user-images.githubusercontent.com/53187347/74756185-7ae91100-5274-11ea-90d5-3845ed2e1a9f.png "PreflightPy Logo")
+![preflightpy logo](https://user-images.githubusercontent.com/53187347/74756185-7ae91100-5274-11ea-90d5-3845ed2e1a9f.png?style=centerme "PreflightPy Logo")
 
 # PreflightPy
 
