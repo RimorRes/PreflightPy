@@ -25,7 +25,7 @@ Before we get started, please note that PreflightPy was built with **Python 3.x*
 Getting yourself your very own copy of this module is super simple!
 You can get Preflight from pip using your terminal via the following command:
 
-  ```
+  ```bash
   pip install preflight
   ```
 
@@ -35,7 +35,7 @@ That's it you're set!
 
 Here's an example of typical usage of this package:
 
-  ```
+  ```python
   # Importing the module
   import preflightpy as pre
 
@@ -58,35 +58,35 @@ Here's an example of typical usage of this package:
 
 The following is the format you'll have to use in your `.json` input files:
 
-  ```
+  ```json
   {
     "Engine" : {
-      "Specific Impulse (s)" : 318,
-      "Thrust (N)" : 500
+      "Specific Impulse (s)" : 318,  // User-defined
+      "Thrust (N)" : 500  // User-defined
     },
     "Fuel" : {
-      "Oxidizer/Fuel Mixture Ratio" : 15,
-      "Fuel Reserve (%)" : 5
+      "Oxidizer/Fuel Mixture Ratio" : 15,  // User-defined
+      "Fuel Reserve (%)" : 5  // User-defined
     },
     "Mass" : {
-      "Dry Mass (kg)" : 10
+      "Dry Mass (kg)" : 10  // User-defined
     },
     "Aerodynamics" : {
-      "Drag Coefficient" : 0.0556,
-      "Frontal Area (m2)" : 0.0255364
+      "Drag Coefficient" : 0.0556,  // User-defined
+      "Cross-section (m2)" : 0.0255364  // User-defined
     },
     "Environment" : {
       "Elevation (m)" : 113,
-      "Simulation step (s)" : 0.01,
-      "Gravity (m/s2)" : 9.80665,
-      "Air molar mass (kg/mol)" : 0.02896968,
-      "Gas constant (J/(K.mol))" : 8.314462618,
-      "Air heat capacity ratio" : 1.4,
-      "Standard Atmospheric pressure @SL (Pa)" : 101325
+      "Simulation step (s)" : 0.01,  // User-defined
+      "Standard gravity (m/s2)" : 9.80665,  // Constant
+      "Air molar mass (kg/mol)" : 0.02896968,  // Constant
+      "Gas constant (J/(K.mol))" : 8.314462618,  // Constant
+      "Air heat capacity ratio" : 1.4,  // Constant
+      "Standard Atmospheric pressure @SL (Pa)" : 101325  // Constant
     },
     "Output" : {
-      "Log File Path" : "Flight.log",
-      "CSV File Path" : "Flight.csv"
+      "Log File Path" : "Flight.log",  // User-defined
+      "CSV File Path" : "Flight.csv"  // User-defined
     }
   }
   ```
@@ -104,7 +104,7 @@ If you want to contribute to this project, this set of instructions will get a c
 To get a copy of the repository you'll have to clone it.
 Through the command line, get to the directory you wish to clone the repository into then run the following command.
 
-  ```
+  ```bash
   git clone https://github.com/Oxyde2/Preflight.git
   ```
 
@@ -113,7 +113,7 @@ Through the command line, get to the directory you wish to clone the repository 
 We're almost done, next step is to fetch our dependencies.
 To install the required python modules just run the following command in the command line at the root of the repository folder.
 
-  ```
+  ```bash
   pip install -r requirements.txt
   ```
 
