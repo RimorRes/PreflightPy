@@ -27,6 +27,8 @@ class Environment:
     def __init__(self, vars):
         # Environmental Constants
         self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.Pstatic = vars  # noqa
+        self.g_zero = self.g
+        self.Re = 6356766
         self.hb = [  # Layer base altitudes
             0,
             11000,
@@ -64,12 +66,15 @@ class Environment:
             -0.002
             ]
 
-    def get_geopotential_altitude(self, r: float, z: float) -> float:
-        return r*z / (r+z)
+    def get_geopotential_altitude(self, z: float) -> float:
+        return self.Re*z / (self.Re+z)
 
     def atmo_heterosphere_equ(self, z: float, a, b, c, d, e):
         z_km = z/1000
         return math.exp(a * z_km**4 + b * z_km**3 + c * z_km**2 + d * z_km + e)  # noqa
+
+    def get_gravity(self, z: float) -> float:
+        return self.g_zero * (self.Re / (self.Re + z))**2
 
     def get_temp(self, z: float, h: float) -> float:
         if 0 <= h <= 11000:
@@ -311,7 +316,8 @@ class Environment:
         return math.sqrt((self.gamma * self.R * T) / self.M_air)
 
     def get_status(self, z: float):
-        h = round(self.get_geopotential_altitude(6356766, z), 0)
+        h = round(self.get_geopotential_altitude(z), 0)
+        self.g = self.get_gravity(z)
         self.T, b = self.get_temp(z, h)
         self.P = self.get_pressure(z, h, self.T, b)
         self.Rho = self.get_density(z, self.P, self.T, b)
