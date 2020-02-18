@@ -37,7 +37,7 @@ class System:
         # Fuel Specs
         self.OFratio, self.Reserve = p.package[1]
         # Flow Rate
-        self.w = (self.Fthrust/9.81)/self.isp
+        self.w = (self.Fthrust/self.env.g_zero)/self.isp
         self.dF = self.w * (1/(self.OFratio+1))
         self.dOx = (self.w - self.dF)
         # Fuel & Oxidizer
@@ -206,7 +206,7 @@ class System:
         self.Mach = self.v/self.env.c
 
     def calc_acc(self):
-        self.a = (self.Fthrust - (self.m * 9.81 + self.Fdrag)) / self.m
+        self.a = (self.Fthrust - (self.m * self.env.g + self.Fdrag)) / self.m
 
     def calc_additional_derivatives(self):
         self.j = (self.a - self.plot_data[4][-1]) / self.env.t
@@ -217,7 +217,7 @@ class System:
         self.Fdrag = 0.5 * (self.env.Rho * self.v**2 * self.Cd * self.Aproj)
 
     def calc_twr(self):
-        self.twr = self.Fthrust / (self.m * 9.81)
+        self.twr = self.Fthrust / (self.m * self.env.g)
 
 # Environment
     def update_env(self):

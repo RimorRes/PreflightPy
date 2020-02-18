@@ -24,7 +24,7 @@
     "Standard Atmospheric pressure @SL (Pa)" : 101325
   },
   "Output" : {
-    "Log File Path" : "output/gofast.log",
-    "CSV File Path" : "output/gofast.csv"
+    "Log File Path" : "tests/output/gofast.log",
+    "CSV File Path" : "tests/output/gofast.csv"
   }
 }

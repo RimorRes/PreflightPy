@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 
+## [Unreleased]
+### Additions
+- Implementation of earth gravity/radius latitude model
+- Unit tests for said models
+
+## [0.6.2] - 2020-2-18
+### Added
+- Gravity now changes according to altitude
+
+### Fixed
+- Unit tests to accept deviations under threshold
+
 ## [0.6.1] - 2020-2-17
 ### Added
 - Unit tests for density heterosphere model
