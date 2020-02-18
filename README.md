@@ -61,32 +61,32 @@ The following is the format you'll have to use in your `.json` input files:
   ```json
   {
     "Engine" : {
-      "Specific Impulse (s)" : 318,  // User-defined
-      "Thrust (N)" : 500  // User-defined
+      "Specific Impulse (s)" : 318,  
+      "Thrust (N)" : 500  
     },
     "Fuel" : {
-      "Oxidizer/Fuel Mixture Ratio" : 15,  // User-defined
-      "Fuel Reserve (%)" : 5  // User-defined
+      "Oxidizer/Fuel Mixture Ratio" : 15,  
+      "Fuel Reserve (%)" : 5  
     },
     "Mass" : {
-      "Dry Mass (kg)" : 10  // User-defined
+      "Dry Mass (kg)" : 10  
     },
     "Aerodynamics" : {
-      "Drag Coefficient" : 0.0556,  // User-defined
-      "Cross-section (m2)" : 0.0255364  // User-defined
+      "Drag Coefficient" : 0.0556,  
+      "Cross-section (m2)" : 0.0255364  
     },
     "Environment" : {
       "Elevation (m)" : 113,
-      "Simulation step (s)" : 0.01,  // User-defined
-      "Standard gravity (m/s2)" : 9.80665,  // Constant
-      "Air molar mass (kg/mol)" : 0.02896968,  // Constant
-      "Gas constant (J/(K.mol))" : 8.314462618,  // Constant
-      "Air heat capacity ratio" : 1.4,  // Constant
-      "Standard Atmospheric pressure @SL (Pa)" : 101325  // Constant
+      "Simulation step (s)" : 0.01,
+      "Standard gravity (m/s2)" : 9.80665,
+      "Air molar mass (kg/mol)" : 0.02896968,
+      "Gas constant (J/(K.mol))" : 8.314462618,
+      "Air heat capacity ratio" : 1.4,
+      "Standard Atmospheric pressure @SL (Pa)" : 101325
     },
     "Output" : {
-      "Log File Path" : "Flight.log",  // User-defined
-      "CSV File Path" : "Flight.csv"  // User-defined
+      "Log File Path" : "Flight.log",  
+      "CSV File Path" : "Flight.csv"  
     }
   }
   ```
