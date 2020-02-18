@@ -13,6 +13,9 @@ and this project adheres to semantic versioning: [SemVer](https://semver.org/).
 ### Added
 - Gravity now changes according to altitude
 
+### Fixed
+- Unit tests to accept deviations under threshold
+
 ## [0.6.1] - 2020-2-17
 ### Added
 - Unit tests for density heterosphere model

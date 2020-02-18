@@ -124,9 +124,9 @@ class Environment:
 
         if b <= 6:
             if self.Lm[b] != 0:
-                return self.Pb[b] * (self.Tb[b]/T)**(self.g*self.M_air/(self.R*self.Lm[b]))  # noqa
+                return self.Pb[b] * (self.Tb[b]/T)**(self.g_zero*self.M_air/(self.R*self.Lm[b]))  # noqa
             else:
-                return self.Pb[b] * math.exp(-self.g * self.M_air * (h-self.hb[b]) / (self.R*self.Tb[b]))  # noqa
+                return self.Pb[b] * math.exp(-self.g_zero * self.M_air * (h-self.hb[b]) / (self.R*self.Tb[b]))  # noqa
         elif b == 7:
             return self.atmo_heterosphere_equ(
                 z,
