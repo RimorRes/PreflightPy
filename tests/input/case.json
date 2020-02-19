@@ -1,5 +1,6 @@
 {
   "Engine" : {
+    "Type" : "Liquid",
     "Specific Impulse (s)" : 318,
     "Thrust (N)" : 500
   },

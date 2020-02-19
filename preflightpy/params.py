@@ -57,7 +57,10 @@ class Parameters:
         try:
             return float(x)
         except Exception:
-            return str(x)
+            if type(x) == dict:
+                return x
+            else:
+                return str(x)
 
 # TEMP: for testing purposes
 # p = Params()

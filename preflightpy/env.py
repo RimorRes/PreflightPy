@@ -26,7 +26,7 @@ class Environment:
 
     def __init__(self, vars):
         # Environmental Constants
-        self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.Pstatic = vars  # noqa
+        self.elev, self.t, self.g, self.M_air, self.R, self.gamma, self.P_zero = vars  # noqa
         self.g_zero = self.g
         self.Re = 6356766
         self.hb = [  # Layer base altitudes

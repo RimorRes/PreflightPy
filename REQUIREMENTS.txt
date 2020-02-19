@@ -1,4 +1,5 @@
 matplotlib
+numpy
 coverage
 pytest
 pytest-cov
