@@ -44,7 +44,7 @@ Here's an example of typical usage of this package:
   params = pre.Parameters("path/to/input/file.json")  
 
   #  The 'Environment' takes care of computing conditions (e.g. atmosphere, gravity) at various altitudes.
-  env = pre.Environment(p.env_variables)
+  env = pre.Environment(params.env_variables)
 
   # Specify the burn time of your engine in seconds.
   burn_time = 10
@@ -86,8 +86,8 @@ The following is the format you'll have to use in your `.json` input files:
       "Standard Atmospheric pressure @SL (Pa)" : 101325
     },
     "Output" : {
-      "Log File Path" : "Flight.log",  
-      "CSV File Path" : "Flight.csv"  
+      "Log File Path" : "path/to/Flight.log",  
+      "CSV File Path" : "path/to/Flight.csv"  
     }
   }
   ```
