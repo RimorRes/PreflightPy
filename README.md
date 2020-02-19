@@ -50,7 +50,7 @@ Here's an example of typical usage of this package:
   burn_time = 10
 
   # The 'System', the core of this module, it takes care of the main simulation and output.
-  s = pre.System(params, env, 10)  
+  s = pre.System(params, env, burn_time)  
 
   s.launch()  # Blast off! Launches the simulation.
 
