@@ -1,34 +1,19 @@
 {
   "Engine" : {
     "Type" : "Solid",
-    "Specific Impulse (s)" : 212.5,
+    "Specific impulse (s)" : 212.5,
     "Average thrust (N)" : 39419,
-    "Start thrust curve equation" : {
-      "Start (s)" : 0.00,
-      "Stop (s)" : 1.00,
-      "Polynomial Coefficients" : [28555, -48282, 78808]
-    },
-    "Coast thrust curve equation" : {
-      "Start (s)" : 1.00,
-      "Stop (s)" : 7.00,
-      "Polynomial Coefficients" : [0, 59081]
-    },
-    "Burnout thrust curve equation" : {
-      "Start (s)" : 7.00,
-      "Stop (s)" : 10.43,
-      "Polynomial Coefficients" : [-17225, 179654]
-    }
+    "Thrust curve file path" : "Preflight/tests/input/S-50000.csv"
   },
   "Fuel" : {
-    "Oxidizer/Fuel Mixture Ratio" : 1,
-    "Fuel Reserve (%)" : 0
+    "Fuel reserve (%)" : 0
   },
   "Mass" : {
-    "Dry Mass (kg)" : 131.36
+    "Dry mass (kg)" : 131.36
   },
   "Aerodynamics" : {
-    "Drag Coefficient" : 0.1,
-    "Frontal Area (m2)" : 0.05
+    "Drag coefficient" : 0.1,
+    "Cross-section (m2)" : 0.05
   },
   "Environment" : {
     "Elevation (m)" : 1190,
@@ -37,10 +22,10 @@
     "Air molar mass (kg/mol)" : 0.02896968,
     "Gas constant (J/(K.mol))" : 8.314462618,
     "Air heat capacity ratio" : 1.4,
-    "Standard Atmospheric pressure @SL (Pa)" : 101325
+    "Standard atmospheric pressure @SL (Pa)" : 101325
   },
   "Output" : {
-    "Log File Path" : "./tests/output/gofast.log",
-    "CSV File Path" : "./tests/output/gofast.csv"
+    ".log file" : "Preflight/tests/output/gofast.log",
+    ".csv file" : "Preflight/tests/output/gofast.csv"
   }
 }

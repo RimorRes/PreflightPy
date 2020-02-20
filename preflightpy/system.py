@@ -22,7 +22,6 @@ iorbital.projects@gmail.com """
 import math
 import csv
 import matplotlib.pyplot as plt
-import numpy as np
 
 
 class System:
@@ -32,7 +31,7 @@ class System:
         self.env = env
 
         # Burn time
-        self.num_steps = int(burn_time/self.env.t)
+        self.num_steps = int(burn_time // self.env.t)
         self.burn_time = self.num_steps * self.env.t
 
         # Engine specs
@@ -41,20 +40,28 @@ class System:
         if self.etype == "Liquid":
             self.isp, self.thrust = p.package[0]
         elif self.etype == "Solid":
-            self.isp, self.avg_thrust, self.start_equ, self.coast_equ, self.burnout_equ = p.package[0]  # noqa
-            self.start_equ = list(self.start_equ.values())
-            self.coast_equ = list(self.coast_equ.values())
-            self.burnout_equ = list(self.burnout_equ.values())
+            self.isp, self.avg_thrust, path = p.package[0]  # noqa
+            with(open(path)) as f:
+                csv_reader = csv.reader(f)
+                self.thrust_curve = {}
+                for row in csv_reader:
+                    self.thrust_curve.update({
+                        float(row[0]): float(row[1])
+                    })
+                f.close()
 
         # Fuel Specs
-        self.OFratio, self.Reserve = p.package[1]
-
+        if self.etype == "Liquid":
+            self.OFratio, self.Reserve = p.package[1]
+        elif self.etype == "Solid":
+            self.OFratio = 0
+            self.Reserve = p.package[1][0]
         # Flow Rate
         if self.etype == "Liquid":
             self.w = (self.thrust/self.env.g_zero)/self.isp
         elif self.etype == "Solid":
             self.w = (self.avg_thrust/self.env.g_zero)/self.isp
-        self.dF = self.w * (1/(self.OFratio+1))
+        self.dF = self.w * (1 / (self.OFratio + 1))
         self.dOx = (self.w - self.dF)
 
         # Fuel & Oxidizer
@@ -158,9 +165,6 @@ class System:
             # Time-related
             self.t += self.env.t
 
-            #if self.twr < 1:
-                #raise RuntimeError("TWR = {0} (< 1) at t = {1}".format(self.twr, self.t))
-
             if self.a > self.max_acc:
                 self.max_acc = self.a
                 self.max_g = self.max_acc/self.env.g
@@ -246,19 +250,7 @@ class System:
         if self.etype == "Liquid":
             pass
         elif self.etype == "Solid":
-            s = self.start_equ
-            c = self.coast_equ
-            b = self.burnout_equ
-            if s[0] <= self.t < s[1]:
-                poly = np.poly1d(s[2])
-                #print(self.t,poly(self.t))
-                self.thrust = poly(self.t)
-            elif c[0] <= self.t < c[1]:
-                poly = np.poly1d(c[2])
-                self.thrust = poly(self.t)
-            elif b[0] <= self.t <= b[1]:
-                poly = np.poly1d(b[2])
-                self.thrust = poly(self.t)
+            self.thrust = self.thrust_curve[round(self.t, 3)]
 
     def calc_drag(self):
         self.drag = 0.5 * (self.env.Rho * self.v**2 * self.Cd * self.cross_section)  # noqa

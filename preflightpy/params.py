@@ -57,11 +57,4 @@ class Parameters:
         try:
             return float(x)
         except Exception:
-            if type(x) == dict:
-                return x
-            else:
-                return str(x)
-
-# TEMP: for testing purposes
-# p = Params()
-# print(p.package, len(str(p.package)), type(p.package[0][1]))
+            return str(x)
