@@ -58,7 +58,3 @@ class Parameters:
             return float(x)
         except Exception:
             return str(x)
-
-# TEMP: for testing purposes
-# p = Params()
-# print(p.package, len(str(p.package)), type(p.package[0][1]))

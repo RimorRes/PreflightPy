@@ -29,24 +29,51 @@ class System:
         p = params
         # Environment
         self.env = env
+
         # Burn time
-        self.num_steps = int(burn_time/self.env.t)
+        self.num_steps = int(burn_time // self.env.t)
         self.burn_time = self.num_steps * self.env.t
+
         # Engine specs
-        self.isp, self.Fthrust = p.package[0]
+        self.etype = p.package[0][0]
+        p.package[0].pop(0)
+        if self.etype == "Liquid":
+            self.isp, self.thrust = p.package[0]
+        elif self.etype == "Solid":
+            self.isp, self.avg_thrust, path = p.package[0]  # noqa
+            with(open(path)) as f:
+                csv_reader = csv.reader(f)
+                self.thrust_curve = {}
+                for row in csv_reader:
+                    self.thrust_curve.update({
+                        float(row[0]): float(row[1])
+                    })
+                f.close()
+
         # Fuel Specs
-        self.OFratio, self.Reserve = p.package[1]
+        if self.etype == "Liquid":
+            self.OFratio, self.Reserve = p.package[1]
+        elif self.etype == "Solid":
+            self.OFratio = 0
+            self.Reserve = p.package[1][0]
         # Flow Rate
-        self.w = (self.Fthrust/self.env.g_zero)/self.isp
-        self.dF = self.w * (1/(self.OFratio+1))
+        if self.etype == "Liquid":
+            self.w = (self.thrust/self.env.g_zero)/self.isp
+        elif self.etype == "Solid":
+            self.w = (self.avg_thrust/self.env.g_zero)/self.isp
+        self.dF = self.w * (1 / (self.OFratio + 1))
         self.dOx = (self.w - self.dF)
+
         # Fuel & Oxidizer
         self.F = (self.dF * self.burn_time)/(1 - self.Reserve/100)
         self.Ox = (self.dOx * self.burn_time)/(1 - self.Reserve/100)
+
         # Mass
-        self.frameM = p.package[2][0]
+        self.dry_mass = p.package[2][0]
+
         # Aerodynamics
-        self.Cd, self.Aproj = p.package[3]
+        self.Cd, self.cross_section = p.package[3]
+
         # Output
         self.logout, self.csvout = p.package[4]
 
@@ -54,21 +81,21 @@ class System:
 
         self.field_names = [
             "t",
-            "Fthrust",
-            "Fdrag",
+            "thrust",
+            "drag",
             "m",
             "v",
-            "Mach",
+            "mach",
             "a",
             "altitude",
             "asl",
             "twr",
-            "maxV",
-            "maxMach",
-            "maxAcc",
-            "minAcc",
-            "maxG",
-            "minG"
+            "max_v",
+            "max_mach",
+            "max_acc",
+            "min_acc",
+            "max_g",
+            "min_g"
         ]
         with open(self.csvout, "w", newline="") as f:
             csv_writer = csv.writer(f)
@@ -78,25 +105,26 @@ class System:
 # Flight
     def launch(self):
         """Runs a simulation within the given parameters."""
-        # Variable setup
+        # Variables setup
+        self.t = 0
         self.altitude = 0
         self.asl = self.altitude + self.env.elev
         self.calc_mass()
         self.env.get_status(self.asl)
+        self.calc_thrust()
         self.calc_twr()
-        self.Fdrag = 0
+        self.drag = 0
         self.v = 0
-        self.maxV = 0
-        self.Mach = 0
-        self.maxMach = 0
-        self.maxAcc = 0
-        self.maxG = 0
-        self.minAcc = 0
-        self.minG = 0
+        self.max_v = 0
+        self.mach = 0
+        self.max_mach = 0
+        self.max_acc = 0
+        self.max_g = 0
+        self.min_acc = 0
+        self.min_g = 0
         self.a = 0
         self.j = 0
         self.s = 0
-        self.t = 0
 
         # Used by matplotlib
         self.plot_data = [
@@ -119,6 +147,8 @@ class System:
             self.add_data()
             # Environment-related
             self.update_env()
+            # Thrust-related
+            self.calc_thrust()
             # Accelaration/derivative-related
             self.calc_acc()
             self.calc_additional_derivatives()
@@ -130,23 +160,20 @@ class System:
             self.calc_drag()
             self.calc_twr()
             # Mass-related
-            self.remove_fuel()
+            self.calc_propellant()
             self.calc_mass()
             # Time-related
             self.t += self.env.t
 
-            if self.twr < 1:
-                raise RuntimeError("TWR below 1 : {}".format(self.twr))
+            if self.a > self.max_acc:
+                self.max_acc = self.a
+                self.max_g = self.max_acc/self.env.g
 
-            if self.a > self.maxAcc:
-                self.maxAcc = self.a
-                self.maxG = self.maxAcc/self.env.g
+            if self.v > self.max_v:
+                self.max_v = self.v
+                self.max_mach = self.mach
 
-            if self.v > self.maxV:
-                self.maxV = self.v
-                self.maxMach = self.Mach
-
-        self.Fthrust = 0
+        self.thrust = 0
 
         # Deceleration phase
         while self.v > 0:
@@ -169,29 +196,35 @@ class System:
             # Time-related
             self.t += self.env.t
 
-            if self.a < self.minAcc:
-                self.minAcc = self.a
-                self.minG = self.minAcc/self.env.g
+            if self.a < self.min_acc:
+                self.min_acc = self.a
+                self.min_g = self.min_acc/self.env.g
 
         self.output(
-            "maxV",
-            "maxMach",
-            "maxAcc",
-            "minAcc",
-            "maxG",
-            "minG"
+            "max_v",
+            "max_mach",
+            "max_acc",
+            "min_acc",
+            "max_g",
+            "min_g"
         )
 
     def suicide_burn(self):
         """Run a suicide burn simulation, will affct ascent simulation."""
-        self.Vt = math.sqrt((2 * self.m * self.env.g) / (self.env.Rho * self.Aproj * self.Cd))  # noqa
+        self.Vt = math.sqrt((2 * self.m * self.env.g) / (self.env.Rho * self.cross_section * self.Cd))  # noqa
 
 # Mass
     def calc_mass(self):
-        self.fuelM = (self.Ox + self.F)
-        self.m = self.fuelM + self.frameM
+        self.propellant_mass = (self.Ox + self.F)
+        self.m = self.propellant_mass + self.dry_mass
 
-    def remove_fuel(self):
+    def calc_propellant(self):
+        if self.etype == "Liquid":
+            self.w = (self.thrust/self.env.g_zero)/self.isp
+        elif self.etype == "Solid":
+            self.w = (self.avg_thrust/self.env.g_zero)/self.isp
+        self.dF = self.w * (1/(self.OFratio+1))
+        self.dOx = (self.w - self.dF)
         self.Ox -= self.dOx * self.env.t
         self.F -= self.dF * self.env.t
 
@@ -203,21 +236,27 @@ class System:
 # Derivatives of position
     def calc_velocity(self):
         self.v += self.a * self.env.t
-        self.Mach = self.v/self.env.c
+        self.mach = self.v/self.env.c
 
     def calc_acc(self):
-        self.a = (self.Fthrust - (self.m * self.env.g + self.Fdrag)) / self.m
+        self.a = (self.thrust - (self.m * self.env.g + self.drag)) / self.m
 
     def calc_additional_derivatives(self):
         self.j = (self.a - self.plot_data[4][-1]) / self.env.t
         self.s = (self.j - self.plot_data[5][-1]) / self.env.t
 
 # Forces
+    def calc_thrust(self):
+        if self.etype == "Liquid":
+            pass
+        elif self.etype == "Solid":
+            self.thrust = self.thrust_curve[round(self.t, 3)]
+
     def calc_drag(self):
-        self.Fdrag = 0.5 * (self.env.Rho * self.v**2 * self.Cd * self.Aproj)
+        self.drag = 0.5 * (self.env.Rho * self.v**2 * self.Cd * self.cross_section)  # noqa
 
     def calc_twr(self):
-        self.twr = self.Fthrust / (self.m * self.env.g)
+        self.twr = self.thrust / (self.m * self.env.g)
 
 # Environment
     def update_env(self):
@@ -250,14 +289,14 @@ class System:
         self.plot_data[4].append(self.a)
         self.plot_data[5].append(self.j)
         self.plot_data[6].append(self.s)
-        self.plot_data[7].append(self.Fdrag)
+        self.plot_data[7].append(self.drag)
         self.output(
             "t",
-            "Fthrust",
-            "Fdrag",
+            "thrust",
+            "drag",
             "m",
             "v",
-            "Mach",
+            "mach",
             "a",
             "altitude",
             "asl",

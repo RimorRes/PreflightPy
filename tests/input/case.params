@@ -1,7 +1,8 @@
+Type : Solid
 Specific impulse (s) : 318
-Thrust (N) : 500
+Average thrust (N) : 500
+Thrust curve file path : tests/input/thrust.csv
 ================== ▲ Engine ▲ =================
-Oxidizer/Fuel mixture ratio : 15
 Fuel reserve (%) : 5
 =================== ▲ Fuel ▲ ==================
 Dry mass (kg) : 10
