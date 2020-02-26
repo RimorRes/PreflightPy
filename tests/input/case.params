@@ -1,3 +1,4 @@
+Type : Solid
 Specific impulse (s) : 318
 Average thrust (N) : 500
 Thrust curve file path : tests/input/thrust.csv
