@@ -62,19 +62,20 @@ The following is the format you'll have to use in your `.json` input files:
   ```json
   {
     "Engine" : {
-      "Specific Impulse (s)" : 318,  
-      "Thrust (N)" : 500  
+      "Type" : "Liquid",
+      "Specific impulse (s)" : 318,
+      "Thrust (N)" : 500
     },
     "Fuel" : {
-      "Oxidizer/Fuel Mixture Ratio" : 15,  
-      "Fuel Reserve (%)" : 5  
+      "Oxidizer/fuel mixture ratio" : 15,
+      "Fuel reserve (%)" : 5
     },
     "Mass" : {
-      "Dry Mass (kg)" : 10  
+      "Dry Mass (kg)" : 10
     },
     "Aerodynamics" : {
-      "Drag Coefficient" : 0.0556,  
-      "Cross-section (m2)" : 0.0255364  
+      "Drag coefficient" : 0.0556,
+      "Cross-section (m2)" : 0.0255364
     },
     "Environment" : {
       "Elevation (m)" : 113,
@@ -83,11 +84,11 @@ The following is the format you'll have to use in your `.json` input files:
       "Air molar mass (kg/mol)" : 0.02896968,
       "Gas constant (J/(K.mol))" : 8.314462618,
       "Air heat capacity ratio" : 1.4,
-      "Standard Atmospheric pressure @SL (Pa)" : 101325
+      "Standard atmospheric pressure @SL (Pa)" : 101325
     },
     "Output" : {
-      "Log File Path" : "path/to/Flight.log",  
-      "CSV File Path" : "path/to/Flight.csv"  
+      ".log file" : "Flight.log",
+      ".csv file" : "Flight.csv"
     }
   }
   ```
