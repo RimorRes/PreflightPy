@@ -1,4 +1,4 @@
-<div align="center"><img src="https://user-images.githubusercontent.com/53187347/74756185-7ae91100-5274-11ea-90d5-3845ed2e1a9f.png" width="600"/></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/53187347/77073741-01b61880-69f0-11ea-9e3f-0c3eb92718b7.png" width="600"/></div>
 
 # PreflightPy
 
