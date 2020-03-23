@@ -67,13 +67,13 @@ class TestParametersRetrieval:
             3
             ]) == str
 
-    def test_params_extension(self):
+    def test_solid(self):
 
-        p = pre.Parameters("tests/input/case.params")
+        p = pre.Parameters("tests/input/case_solid.json")
         assert p.package == [
-            ["Solid", 318, 500, "tests/input/thrust.csv"],
-            [5],
-            [10],
+            ["Solid", 190, 20, "path/to/thrust.csv"],
+            [0],
+            [1.5],
             [0.0556, 0.0255364],
             ["Flight.log", "Flight.csv"]
             ]
@@ -87,9 +87,9 @@ class TestParametersRetrieval:
             101325
             ]
 
-    def test_json_extension(self):
+    def test_liquid(self):
 
-        p = pre.Parameters("tests/input/case.json")
+        p = pre.Parameters("tests/input/case_liquid.json")
         assert p.package == [
             ["Liquid", 243, 500],
             [1, 0],

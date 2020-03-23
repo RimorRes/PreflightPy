@@ -22,8 +22,12 @@ class TestEnvUpdate:
         assert abs(100 - round(environment.P, -1) / 22630 * 100) <= 0.1
         environment.get_status(20000)
         assert abs(100 - round(environment.P, -1) / 5530 * 100) <= 0.1
+        environment.get_status(48000)
+        assert abs(100 - round(environment.P, 0) / 102 * 100) <= 0.1
         environment.get_status(70000)
         assert abs(100 - round(environment.P, 1) / 5.2 * 100) <= 0.1
+        environment.get_status(75000)
+        assert abs(100 - round(environment.P, 1) / 2.4 * 100) <= 0.1
         environment.get_status(87000)
         assert abs(100 - round(environment.P, 2) / 0.31 * 100) <= 0.1
         environment.get_status(95000)

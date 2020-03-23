@@ -1,0 +1,31 @@
+{
+  "Engine" : {
+    "Type" : "Solid",
+    "Specific impulse (s)" : 190,
+    "Average thrust (N)" : 20,
+    "Thrust curve file path" : "path/to/thrust.csv"
+  },
+  "Fuel" : {
+    "Fuel reserve (%)" : 0
+  },
+  "Mass" : {
+    "Dry Mass (kg)" : 1.5
+  },
+  "Aerodynamics" : {
+    "Drag coefficient" : 0.0556,
+    "Cross-section (m2)" : 0.0255364
+  },
+  "Environment" : {
+    "Elevation (m)" : 113,
+    "Simulation step (s)" : 0.01,
+    "Standard gravity (m/s2)" : 9.80665,
+    "Air molar mass (kg/mol)" : 0.02896968,
+    "Gas constant (J/(K.mol))" : 8.314462618,
+    "Air heat capacity ratio" : 1.4,
+    "Standard atmospheric pressure @SL (Pa)" : 101325
+  },
+  "Output" : {
+    ".log file" : "Flight.log",
+    ".csv file" : "Flight.csv"
+  }
+}
