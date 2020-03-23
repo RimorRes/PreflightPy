@@ -26,11 +26,8 @@ class Parameters:
 
     def __init__(self, path="preflight/case.params"):
 
-        file = open(path, 'r')
-        extension = path.split(".")[1]
-
         self.package = []
-
+        file = open(path, 'r')
         j = json.load(file)
 
         for subgroup in j.values():
