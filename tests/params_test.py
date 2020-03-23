@@ -91,8 +91,8 @@ class TestParametersRetrieval:
 
         p = pre.Parameters("tests/input/case.json")
         assert p.package == [
-            ["Liquid", 318, 500],
-            [15, 5],
+            ["Liquid", 243, 500],
+            [1, 0],
             [10],
             [0.0556, 0.0255364],
             ["Flight.log", "Flight.csv"]
