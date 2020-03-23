@@ -1,12 +1,12 @@
 {
   "Engine" : {
     "Type" : "Liquid",
-    "Specific impulse (s)" : 318,
+    "Specific impulse (s)" : 243,
     "Thrust (N)" : 500
   },
   "Fuel" : {
-    "Oxidizer/fuel mixture ratio" : 15,
-    "Fuel reserve (%)" : 5
+    "Oxidizer/fuel mixture ratio" : 1,
+    "Fuel reserve (%)" : 0
   },
   "Mass" : {
     "Dry Mass (kg)" : 10

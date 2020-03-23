@@ -26,29 +26,12 @@ class Parameters:
 
     def __init__(self, path="preflight/case.params"):
 
-        file = open(path, 'r')
-        extension = path.split(".")[1]
-
         self.package = []
+        file = open(path, 'r')
+        j = json.load(file)
 
-        if extension == "params":
-            subgroup = []
-
-            for line in file.readlines():
-
-                if line[0] == '=':
-                    self.package.append(subgroup[:])
-                    subgroup.clear()
-
-                else:
-                    x = line.split(':')
-                    subgroup.append(self.cast(x[1].strip()))
-
-        elif extension == "json":
-            j = json.load(file)
-
-            for subgroup in j.values():
-                self.package.append([self.cast(x) for x in subgroup.values()])
+        for subgroup in j.values():
+            self.package.append([self.cast(x) for x in subgroup.values()])
 
         self.env_variables = self.package.pop(4)
         file.close()
