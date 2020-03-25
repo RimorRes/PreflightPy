@@ -19,25 +19,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 You can contact the author at the following email address:
 iorbital.projects@gmail.com """
 
-import json
+class Thrust_Curve:
 
+    def get_curve(self, path):
 
-class Parameters:
+        with(open(path)) as f:
 
-    def __init__(self, path):
+            csv_reader = csv.reader(f)
+            curve_points = {}
 
-        self.package = []
-        file = open(path, 'r')
-        j = json.load(file)
+            for row in csv_reader:
+                curve_points.update({
+                    float(row[0]): float(row[1])
+                })
 
-        for subgroup in j.values():
-            self.package.append([self.cast(x) for x in subgroup.values()])
+            f.close()
 
-        self.env_variables = self.package.pop(4)
-        file.close()
+        return curve_points
 
-    def cast(self, x):
-        try:
-            return float(x)
-        except Exception:
-            return str(x)
+    def calc_points(self, curve_points: dict, step: float):
+        new = {}
+        for index in range(len(curve_points)-1):
+            pass

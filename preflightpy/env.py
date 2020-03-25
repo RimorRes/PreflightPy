@@ -22,7 +22,7 @@ iorbital.projects@gmail.com """
 import math
 
 
-class Environment:
+class Env_Model:
 
     def __init__(self, vars):
         # Environmental Constants

@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 
 
 class System:
+    
     def __init__(self, params, env, burn_time: float):
         p = params
         # Environment
@@ -40,15 +41,7 @@ class System:
         if self.etype == "Liquid":
             self.isp, self.thrust = p.package[0]
         elif self.etype == "Solid":
-            self.isp, self.avg_thrust, path = p.package[0]  # noqa
-            with(open(path)) as f:
-                csv_reader = csv.reader(f)
-                self.thrust_curve = {}
-                for row in csv_reader:
-                    self.thrust_curve.update({
-                        float(row[0]): float(row[1])
-                    })
-                f.close()
+            self.isp, self.avg_thrust, self.thrust_curve = p.package[0]  # noqa
 
         # Fuel Specs
         if self.etype == "Liquid":
