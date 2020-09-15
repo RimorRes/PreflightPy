@@ -6,7 +6,7 @@
 [![GitHub](https://img.shields.io/github/license/Oxyde2/Preflight?color=yellow)](LICENSE)
 
 [![Coverage Status](https://coveralls.io/repos/github/Oxyde2/Preflight/badge.svg?branch=master)](https://coveralls.io/github/Oxyde2/Preflight?branch=master)
-[![Build Status](https://travis-ci.com/Oxyde2/Preflight.svg?branch=master)](https://travis-ci.com/Oxyde2/Preflight)
+[![Build Status](https://travis-ci.com/RimorRes/Preflight.svg?branch=master)](https://travis-ci.com/RimorRes/Preflight)
 
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20%F0%9F%98%9C%20%F0%9F%98%8D-FFDD67.svg?)](https://gitmoji.carloscuesta.me/)
 [![Documentation Status](https://readthedocs.org/projects/preflight/badge/?version=latest)](https://preflight.readthedocs.io/en/latest/?badge=latest)
