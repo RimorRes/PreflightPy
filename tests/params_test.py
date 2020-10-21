@@ -67,42 +67,13 @@ class TestParametersRetrieval:
             3
             ]) == str
 
-    def test_solid(self):
+    def test_json(self):
 
-        p = pre.Parameters("tests/input/case_solid.json")
+        p = pre.Parameters("tests/input/case.json")
         assert p.package == [
-            ["Solid", 190, 20, "path/to/thrust.csv"],
+            [243, 500, 15],
             [0],
-            [1.5],
-            [0.0556, 0.0255364],
-            ["Flight.log", "Flight.csv"]
-            ]
-        assert p.env_variables == [
-            113,
-            0.01,
-            9.80665,
-            0.02896968,
-            8.314462618,
-            1.4,
-            101325
-            ]
-
-    def test_liquid(self):
-
-        p = pre.Parameters("tests/input/case_liquid.json")
-        assert p.package == [
-            ["Liquid", 243, 500],
-            [1, 0],
             [10],
             [0.0556, 0.0255364],
-            ["Flight.log", "Flight.csv"]
-            ]
-        assert p.env_variables == [
-            113,
-            0.01,
-            9.80665,
-            0.02896968,
-            8.314462618,
-            1.4,
-            101325
+            [113, 0.01]
             ]

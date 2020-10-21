@@ -17,9 +17,5 @@
   "Environment" : {
     "Elevation (m)" : 113,
     "Simulation step (s)" : 0.01
-  },
-  "Output" : {
-    ".log file" : "Flight.log",
-    ".csv file" : "Flight.csv"
   }
 }

@@ -1,6 +1,6 @@
 import preflightpy as pre
 
-params = pre.Parameters("tests/input/case_liquid.json")
+params = pre.Parameters("tests/input/case.json")
 
 burn_time = 10
 
