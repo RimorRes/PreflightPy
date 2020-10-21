@@ -1,7 +1,7 @@
 #!usr/bin/env python3
 
 """ Preflight, a Python module for rocket flight simulation.
-Copyright (C) 2019  Oxyde2
+Copyright (C) 2019  RimorRes
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,6 @@ class Parameters:
         for subgroup in j.values():
             self.package.append([self.cast(x) for x in subgroup.values()])
 
-        self.env_variables = self.package.pop(4)
         file.close()
 
     def cast(self, x):
