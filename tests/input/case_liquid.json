@@ -1,11 +1,10 @@
 {
   "Engine" : {
-    "Type" : "Liquid",
     "Specific impulse (s)" : 243,
-    "Thrust (N)" : 500
+    "Average Thrust (N)" : 500,
+    "Burn time (s)" : 15
   },
   "Fuel" : {
-    "Oxidizer/fuel mixture ratio" : 1,
     "Fuel reserve (%)" : 0
   },
   "Mass" : {
@@ -17,12 +16,7 @@
   },
   "Environment" : {
     "Elevation (m)" : 113,
-    "Simulation step (s)" : 0.01,
-    "Standard gravity (m/s2)" : 9.80665,
-    "Air molar mass (kg/mol)" : 0.02896968,
-    "Gas constant (J/(K.mol))" : 8.314462618,
-    "Air heat capacity ratio" : 1.4,
-    "Standard atmospheric pressure @SL (Pa)" : 101325
+    "Simulation step (s)" : 0.01
   },
   "Output" : {
     ".log file" : "Flight.log",

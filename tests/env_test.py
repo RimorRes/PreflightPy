@@ -1,4 +1,4 @@
-from .context import preflightpy as pre
+import preflightpy as pre
 
 
 class TestEnvUpdate:
