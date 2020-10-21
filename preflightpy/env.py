@@ -27,7 +27,12 @@ from preflightpy._constants import g_zero, air_molar_mass, \
 
 def atmo_heterosphere_equ(z: float, a, b, c, d, e):
     z_km = z/1000
-    return math.exp(a * z_km**4 + b * z_km**3 + c * z_km**2 + d * z_km + e)  # noqa
+    return math.exp(a * z_km**4
+                    + b * z_km**3
+                    + c * z_km**2
+                    + d * z_km
+                    + e
+                    )
 
 
 def get_geopotential_altitude(z: float) -> float:
@@ -87,9 +92,11 @@ def get_pressure(z: float, h: float, temp: float, b: int) -> float:
 
     if b <= 6:
         if lm[b] != 0:
-            return pb[b] * (tb[b]/temp)**(g_zero*air_molar_mass/(gas_constant*lm[b]))  # noqa
+            return pb[b] * (tb[b]/temp) ** \
+                   (g_zero*air_molar_mass/(gas_constant*lm[b]))
         else:
-            return pb[b] * math.exp(-g_zero * air_molar_mass * (h-hb[b]) / (gas_constant*tb[b]))  # noqa
+            return pb[b] * math.exp(-g_zero * air_molar_mass * (h-hb[b])
+                                    / (gas_constant*tb[b]))
     elif b == 7:
         return atmo_heterosphere_equ(
             z,
