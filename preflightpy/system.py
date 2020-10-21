@@ -41,7 +41,8 @@ class System:
         self.avg_mass_flow_rate = (self.avg_thrust/g_zero)/self.isp
 
         # Fuel & Oxidizer
-        self.propellant_mass = (self.avg_mass_flow_rate * self.burn_time)/(1 - self.buffer/100)
+        self.propellant_mass = (self.avg_mass_flow_rate * self.burn_time) \
+            / (1 - self.buffer/100)
 
         # Mass
         self.dry_mass = p.package[2][0]
@@ -94,7 +95,6 @@ class System:
             # Time-related
             self.t += self.dt
 
-
         self.thrust = 0
 
         # Deceleration phase
@@ -118,7 +118,8 @@ class System:
 
     def suicide_burn(self):
         """Run a suicide burn simulation, will affct ascent simulation."""
-        self.Vt = math.sqrt((2 * self.total_mass * self.g) / (self.air_rho * self.cross_section * self.Cd))  # noqa
+        self.Vt = math.sqrt((2 * self.total_mass * self.g)
+                            / (self.air_rho * self.cross_section * self.Cd))
 
     # Mass
     def calc_mass(self):
@@ -130,7 +131,8 @@ class System:
 
     # Position
     def set_altitude(self):
-        self.altitude += self.v * self.dt + (self.a * self.dt**2)/2  # noqa
+        self.altitude += self.v * self.dt \
+            + (self.a * self.dt**2)/2
         self.asl = self.altitude + self.elevation
 
     # Derivatives of position
@@ -143,15 +145,19 @@ class System:
 
     # Forces
     def calc_thrust(self):
-        self.thrust = np.interp(self.t, self.thrust_curve_x, self.thrust_curve_y)
+        self.thrust = np.interp(self.t,
+                                self.thrust_curve_x,
+                                self.thrust_curve_y
+                                )
 
     def calc_drag(self):
-        self.drag = 0.5 * (self.air_rho * self.v**2 * self.Cd * self.cross_section)  # noqa
+        self.drag = 0.5 \
+            * (self.air_rho * self.v**2 * self.Cd * self.cross_section)
 
     def calc_twr(self):
         self.twr = self.thrust / (self.mass * self.g)
 
     # Environment
     def update_env(self):
-        self.g, self.temp, self.pressure, self.air_rho, self.c = get_env_variables(self.asl)
-
+        self.g, self.temp, self.pressure, self.air_rho, self.c \
+            = get_env_variables(self.asl)
