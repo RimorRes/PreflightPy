@@ -1,23 +1,23 @@
 # Ignore python cache
-/__pycache__/
+__pycache__
 
 # Ignore pytest cache
-/.pytest_cache/
+.pytest_cache
 
 # Ignore venv
-/venv/
+venv
 
 # Ignore coverage report
-/*.coverage
+*.coverage
 
 # Ignore pycharm folder
-/.idea/
+.idea
 
 # Ignore build
-/build/
-/dist/
-/preflightpy.egg-info/
+build
+dist
+preflightpy.egg-info
 
 # Ignore repl.it
-/.replit/
+.replit
 
