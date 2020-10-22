@@ -5,6 +5,7 @@ class TestEnvUpdate:
 
     def test_pressure(self):
         env = pre.get_env_variables
+
         # Threshold set to ± 0.1%
         g, temp, pressure, density, c = env(0)
         assert abs(100 - round(pressure, 0) / 101325 * 100) <= 0.1
@@ -45,6 +46,7 @@ class TestEnvUpdate:
 
     def test_temperature(self):
         env = pre.get_env_variables
+
         # Threshold set to ± 0.1%
         g, temp, pressure, density, c = env(5000)
         assert abs(100 - round(temp, 2) / 255.68 * 100) <= 0.1
@@ -77,6 +79,7 @@ class TestEnvUpdate:
 
     def test_density(self):
         env = pre.get_env_variables
+
         # Threshold set to ± 0.1%
         g, temp, pressure, density, c = env(0)
         assert abs(100 - round(density, 4) / 1.2252 * 100) <= 0.1
@@ -113,6 +116,7 @@ class TestEnvUpdate:
 
     def test_speed_of_sound(self):
         env = pre.get_env_variables
+
         # Threshold set to ± 0.1%
         g, temp, pressure, density, c = env(1000)
         assert abs(100 - round(c, 1) / 336.4 * 100) <= 0.1

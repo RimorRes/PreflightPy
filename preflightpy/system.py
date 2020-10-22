@@ -30,28 +30,32 @@ class System:
         p = params
 
         # Engine specs
-        self.isp, self.avg_thrust, self.burn_time = p.package[0]
+        self.isp, self.avg_thrust, self.burn_time = p.params['engine']
         self.thrust_curve_x = list(thrust_curve.keys())
         self.thrust_curve_y = list(thrust_curve.values())
 
         # Fuel Specs
-        self.buffer = p.package[1][0]
+        fuel_reserve = p.params['fuel'][0]
 
         # Flow Rate
         self.avg_mass_flow_rate = (self.avg_thrust/g_zero)/self.isp
 
         # Fuel & Oxidizer
         self.propellant_mass = (self.avg_mass_flow_rate * self.burn_time) \
-            / (1 - self.buffer/100)
+            / (1 - fuel_reserve / 100)
 
         # Mass
-        self.dry_mass = p.package[2][0]
+        self.dry_mass = p.params['mass'][0]
 
         # Aerodynamics
-        self.Cd, self.cross_section = p.package[3]
+        self.Cd, self.cross_section = p.params['aero']
 
         # Environment
-        self.elevation, self.dt = p.package[4]
+        self.elevation = p.params['env'][0]
+
+        # Simulation settings
+        self.dt = p.params['sim'][0]
+
         self.num_steps = math.floor(self.burn_time / self.dt)
 
         # Initialisation
