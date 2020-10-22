@@ -16,6 +16,10 @@
   },
   "Environment" : {
     "Elevation (m)" : 113,
+  },
+  "Simulation" : {
     "Simulation step (s)" : 0.01
   }
 }
+
+// pre.Parameters([243,500,15],[0],[10],[0.0556,0.0255364],[113],[0.01])
