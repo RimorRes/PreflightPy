@@ -1,5 +1,6 @@
 matplotlib
 numpy
+scipy
 coverage
 pytest
 pytest-cov

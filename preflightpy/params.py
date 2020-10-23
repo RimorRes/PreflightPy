@@ -36,7 +36,13 @@ class Parameters:
         self._aero = aero
         self._env = env
         self._sim = sim
-        self.update_params()
+        self._params = {'engine': self._engine,
+                        'fuel': self._fuel,
+                        'mass': self._mass,
+                        'aero': self._aero,
+                        'env': self._env,
+                        'sim': self._sim
+                        }
 
     def __repr__(self):
         return 'simParametrs(' + str(self._params) + ')'

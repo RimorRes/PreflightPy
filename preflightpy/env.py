@@ -20,7 +20,7 @@ You can contact the author at the following email address:
 iorbital.projects@gmail.com """
 
 import math
-from preflightpy._constants import g_zero, air_molar_mass, \
+from preflightpy._constants import g_0, air_molar_mass, \
     gas_constant, air_gamma, earth_radius, \
     hb, pb, tb, lm
 
@@ -40,7 +40,7 @@ def get_geopotential_altitude(z: float) -> float:
 
 
 def get_gravity(z: float) -> float:
-    return g_zero * (earth_radius / (earth_radius + z))**2
+    return g_0 * (earth_radius / (earth_radius + z)) ** 2
 
 
 def get_temp(z: float, h: float) -> tuple:
@@ -93,9 +93,9 @@ def get_pressure(z: float, h: float, temp: float, b: int) -> float:
     if b <= 6:
         if lm[b] != 0:
             return pb[b] * (tb[b]/temp) ** \
-                   (g_zero*air_molar_mass/(gas_constant*lm[b]))
+                   (g_0 * air_molar_mass / (gas_constant * lm[b]))
         else:
-            return pb[b] * math.exp(-g_zero * air_molar_mass * (h-hb[b])
+            return pb[b] * math.exp(-g_0 * air_molar_mass * (h - hb[b])
                                     / (gas_constant*tb[b]))
     elif b == 7:
         return atmo_heterosphere_equ(

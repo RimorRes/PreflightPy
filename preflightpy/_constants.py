@@ -1,7 +1,8 @@
-g_zero = 9.80665  # Standard gravity (m/s2)
+g_0 = 9.80665  # Standard gravity (m/s2)
 air_molar_mass = 0.02896968  # Air molar mass (kg/mol)
 gas_constant = 8.314462618  # Gas constant (J/(K.mol))
 air_gamma = 1.4  # Air heat capacity ratio
+air_rho_0 = 1.2252  # Standard air density (kg/m3)
 earth_radius = 6356766  # Standard Earth radius (m)
 
 hb = [  # Layer base altitudes

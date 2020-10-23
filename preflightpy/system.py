@@ -22,23 +22,22 @@ iorbital.projects@gmail.com """
 import math
 import numpy as np
 from preflightpy.env import get_env_variables
-from preflightpy._constants import g_zero
+from preflightpy._constants import g_0
 
 
 class System:
-    def __init__(self, params, thrust_curve):
+    def __init__(self, params):
         p = params
 
         # Engine specs
-        self.isp, self.avg_thrust, self.burn_time = p.params['engine']
-        self.thrust_curve_x = list(thrust_curve.keys())
-        self.thrust_curve_y = list(thrust_curve.values())
+        self.isp, self.avg_thrust, self.burn_time, \
+            self.thrust_curve_x, self.thrust_curve_y = p.params['engine']
 
         # Fuel Specs
         fuel_reserve = p.params['fuel'][0]
 
         # Flow Rate
-        self.avg_mass_flow_rate = (self.avg_thrust/g_zero)/self.isp
+        self.avg_mass_flow_rate = (self.avg_thrust / g_0) / self.isp
 
         # Fuel & Oxidizer
         self.propellant_mass = (self.avg_mass_flow_rate * self.burn_time) \
@@ -120,17 +119,12 @@ class System:
             # Time-related
             self.t += self.dt
 
-    def suicide_burn(self):
-        """Run a suicide burn simulation, will affct ascent simulation."""
-        self.Vt = math.sqrt((2 * self.total_mass * self.g)
-                            / (self.air_rho * self.cross_section * self.Cd))
-
     # Mass
     def calc_mass(self):
         self.mass = self.propellant_mass + self.dry_mass
 
     def calc_propellant(self):
-        self.mass_flow_rate = (self.thrust/g_zero)/self.isp
+        self.mass_flow_rate = (self.thrust / g_0) / self.isp
         self.propellant_mass -= self.mass_flow_rate * self.dt
 
     # Position

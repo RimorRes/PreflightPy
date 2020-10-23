@@ -1,6 +1,6 @@
 import preflightpy as pre
 
-params = pre.Parameters(engine=[243, 500, 15],
+params = pre.Parameters(engine=[243, 500, 15, [0, 15], [500, 500]],
                         fuel=[0],
                         mass=[10],
                         aero=[0.0556, 0.0255364],
@@ -8,7 +8,8 @@ params = pre.Parameters(engine=[243, 500, 15],
                         sim=[0.01]
                         )
 
-s = pre.System(params, {0: 500, 15: 500})
+print(params)
+s = pre.System(params)
 
 for point in s.launch():
     print(point)
