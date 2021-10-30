@@ -137,8 +137,7 @@ class System:
 
     # Position
     def set_altitude(self):
-        self.altitude += self.v * self.dt \
-            + (self.a * self.dt**2)/2
+        self.altitude += self.v * self.dt
         self.asl = self.altitude + self.elevation
 
     # Derivatives of position
