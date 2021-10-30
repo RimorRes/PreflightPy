@@ -1,108 +1,59 @@
-from .context import preflightpy as pre
+import preflightpy as pre
 
 
 class TestParametersRetrieval:
 
-    def test_cast(self):
+    def test_params(self):
+        parameters = pre.Parameters(engine=[303, 50000, 82],
+                                    fuel=[0],
+                                    mass=[1500],
+                                    aero=[0.07, 0.255364],
+                                    env=[110],
+                                    sim=[0.01]
+                                    )
 
-        def check(x):
-            return type(pre.Parameters.cast('', x))
+        assert type(parameters.params) == dict
+        assert parameters.params == {'engine': [303, 50000, 82],
+                                     'fuel': [0],
+                                     'mass': [1500],
+                                     'aero': [0.07, 0.255364],
+                                     'env': [110],
+                                     'sim': [0.01]
+                                     }
 
-        case = [
-            8,
-            19,
-            603,
-            1964,
-            32415,
-            367121,
-            5664258,
-            83948030,
-            683032097,
-            2144964292
-            ]
-        for i in case:
-            assert check(i) == float
+        parameters.params = [[303, 50000, 82],
+                             [0],
+                             [1500],
+                             [0.07, 0.255364],
+                             [110],
+                             [0.01]
+                             ]
 
-        case = [
-            1.624895098,
-            65.52073166,
-            218.1691716,
-            6066.234004,
-            10717.07395,
-            812955.2693,
-            5689667.860,
-            10842368.66,
-            542488750.2,
-            3131879952.
-            ]
-        for i in case:
-            assert check(i) == float
+        assert parameters.params == {'engine': [303, 50000, 82],
+                                     'fuel': [0],
+                                     'mass': [1500],
+                                     'aero': [0.07, 0.255364],
+                                     'env': [110],
+                                     'sim': [0.01]
+                                     }
 
-        case = [
-            "EREWvRW0NJ",
-            "2QBP7NO2Cm",
-            "J5603ng77j",
-            "c0kbDuauJs",
-            "82jBRk9Pm10",
-            "o51QlnlcnL",
-            "wrEdoJkkqa",
-            "LFJtneD2NI",
-            "vhK3urNqBT",
-            "FcYrw4nQ7m"
-            ]
-        for i in case:
-            assert check(i) == str
+    def test_properties(self):
+        parameters = pre.Parameters()
+        parameters.engine = [243, 500, 15]
+        parameters.fuel = [0]
+        parameters.mass = [10]
+        parameters.aero = [0.0556, 0.0255364]
+        parameters.env = [113]
+        parameters.sim = [0.01]
 
-        assert check({
-            'a': 1,
-            'b': 2,
-            'c': 3
-            }) == str
-        assert check([
-            'a',
-            1,
-            'b',
-            2,
-            'c',
-            3
-            ]) == str
+        assert parameters.engine == [243, 500, 15]
+        assert parameters.fuel == [0]
+        assert parameters.mass == [10]
+        assert parameters.aero == [0.0556, 0.0255364]
+        assert parameters.env == [113]
+        assert parameters.sim == [0.01]
 
-    def test_solid(self):
+    def test_repr(self):
+        parameters = pre.Parameters()
 
-        p = pre.Parameters("tests/input/case_solid.json")
-        assert p.package == [
-            ["Solid", 190, 20, "path/to/thrust.csv"],
-            [0],
-            [1.5],
-            [0.0556, 0.0255364],
-            ["Flight.log", "Flight.csv"]
-            ]
-        assert p.env_variables == [
-            113,
-            0.01,
-            9.80665,
-            0.02896968,
-            8.314462618,
-            1.4,
-            101325
-            ]
-
-    def test_liquid(self):
-
-        p = pre.Parameters("tests/input/case_liquid.json")
-        assert p.package == [
-            ["Liquid", 243, 500],
-            [1, 0],
-            [10],
-            [0.0556, 0.0255364],
-            ["Flight.log", "Flight.csv"]
-            ]
-        assert p.env_variables == [
-            113,
-            0.01,
-            9.80665,
-            0.02896968,
-            8.314462618,
-            1.4,
-            101325
-            ]
+        assert repr(parameters) == "simParametrs({'engine': None, 'fuel': None, 'mass': None, 'aero': None, 'env': None, 'sim': None})"  # noqa

@@ -1,26 +1,23 @@
-# Ignore output files
-*.csv
-*.log
-
 # Ignore python cache
-__pycache__/
+__pycache__
 
 # Ignore pytest cache
-.pytest_cache/
+.pytest_cache
 
 # Ignore venv
-preflight-env/
+venv
 
 # Ignore coverage report
 *.coverage
 
 # Ignore pycharm folder
-.idea/
+.idea
 
 # Ignore build
-build/
-dist/
-preflightpy.egg-info/
+build
+dist
+preflightpy.egg-info
 
 # Ignore repl.it
 .replit
+

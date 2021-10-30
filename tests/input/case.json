@@ -1,0 +1,25 @@
+{
+  "Engine" : {
+    "Specific impulse (s)" : 243,
+    "Average Thrust (N)" : 500,
+    "Burn time (s)" : 15
+  },
+  "Fuel" : {
+    "Fuel reserve (%)" : 0
+  },
+  "Mass" : {
+    "Dry Mass (kg)" : 10
+  },
+  "Aerodynamics" : {
+    "Drag coefficient" : 0.0556,
+    "Cross-section (m2)" : 0.0255364
+  },
+  "Environment" : {
+    "Elevation (m)" : 113,
+  },
+  "Simulation" : {
+    "Simulation step (s)" : 0.01
+  }
+}
+
+// pre.Parameters([243,500,15],[0],[10],[0.0556,0.0255364],[113],[0.01])

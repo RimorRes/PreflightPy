@@ -1,14 +1,15 @@
 language: python
+os: linux
+dist: xenial
 python:
-  - "3.6"      # current default Python on Travis CI
+  - "3.6"
   - "3.7"
   - "3.8"
-# command to install dependencies
 install:
+  - pip install coverage pytest pytest-cov flake8 coveralls pyyaml
   - pip install -r REQUIREMENTS.txt
-# command to run tests
 script:
-  - pytest -v --cov=preflightpy
+  - pytest -v --cov=preflightpy --cov-report=term-missing
   - flake8 preflightpy
   - flake8 tests
 after_success:
