@@ -11,5 +11,9 @@ params = pre.Parameters(engine=[243, 500, 15, [0, 15], [500, 500]],
 print(params)
 s = pre.System(params)
 
-for point in s.launch():
-    print(point)
+flight = []
+for state in s.simulate():
+    flight.append(state)
+
+print('Flight Data Points:', len(flight))
+print('Max altitude (m):', flight[-1]['altitude'])

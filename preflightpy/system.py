@@ -71,14 +71,18 @@ class System:
         self.a = 0
 
     # Flight
-    def launch(self):
+    def simulate(self, outputs=('altitude', 'v', 'a')):
         """
         Runs a simulation within the given parameters.
         """
 
         # Accelaration phase
         for i in range(self.num_steps):
-            yield self.altitude
+            # Output state
+            out_dict = {}
+            for o in outputs:
+                out_dict[o] = eval('self.'+o, locals())
+            yield out_dict
             # Environment-related
             self.update_env()
             # Thrust-related
@@ -100,9 +104,13 @@ class System:
 
         self.thrust = 0
 
-        # Deceleration phase
+        # Coasting phase
         while self.v >= 0:
-            yield self.altitude
+            # Output state
+            out_dict = {}
+            for o in outputs:
+                out_dict[o] = eval('self.' + o, locals())
+            yield out_dict
             # Environment-related
             self.update_env()
             # Acceleration
